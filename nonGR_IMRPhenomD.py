@@ -38,6 +38,8 @@ p['approximant'] = 'IMRPhenomD'
 
 # dchi non-GR
 p['dchi0'] = 1
+
+'''
 p['dchi1'] = 1
 p['dchi2'] = 1
 p['dchi3'] = 1
@@ -101,6 +103,7 @@ p['betaPPE4'] = 1
 p['betaPPE5'] = 1
 p['betaPPE6'] = 1
 p['betaPPE7'] = 1
+'''
 
 sp, sc = pycbc.waveform.waveform._lalsim_td_waveform(**p)
 

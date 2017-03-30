@@ -78,10 +78,10 @@ def _check_lal_pars(p):
     if p['phi4']:
 	lalsimulation.SimInspiralWaveformParamsInsertNonGRPhi4(lal_pars, float(p['phi4']))
 # dChi:
-'''
-#    if p['dchi0']:
-#        lalsimulation.SimInspiralWaveformParamsInsertNonGRDChi0(lal_pars, float(p['dchi0']))
-'''   
+
+    if p['dchi0']:
+        lalsimulation.SimInspiralWaveformParamsInsertNonGRDChi0(lal_pars, float(p['dchi0']))
+   
  if p['dchi1']:
         lalsimulation.SimInspiralWaveformParamsInsertNonGRDChi1(lal_pars, float(p['dchi1']))
     if p['dchi2']:
@@ -199,7 +199,7 @@ p['mass1']=10.
 p['mass2']=10.
 p['delta_t'] = 1./4096
 p['f_lower'] = 40.
-p['approximant']='IMRPhenomPv2'
+p['approximant']='IMRPhenomD'
 lal_pars = _check_lal_pars(p)
 
 # make the waveform
@@ -250,14 +250,13 @@ psd = aLIGOZeroDetHighPower(flen, delta_f, f_low)
 # subsequent calls are much faster.
 m, i = match(hp, sp, psd=psd, low_frequency_cutoff=f_low)
 print 'The match is: %1.3f' % m
-
+'''
 plt.figure()
 plt.plot(hp.sample_times, hp, label = 'GR IMRPhenomD')
-plt.plot(sp.sample_times, hp, label = 'Non-GR IMRPhenomD')
+#plt.plot(sp.sample_times, hp, label = 'Non-GR IMRPhenomD')
 plt.xlabel('Time(s)', fontsize = 20)
 plt.ylabel('h$_+$(m)', fontsize = 20)
 plt.title('IMRPhenomD, All non-GR, $M_1 = 10 M_\odot, M_2 = 50 M_\odot, S_{x_1} = 0.5, S_{x_2} = -0.5 $', fontsize = 20)
 plt.legend(loc = 'best')
 plt.grid()
 plt.show()
-'''

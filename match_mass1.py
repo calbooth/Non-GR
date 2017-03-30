@@ -6,6 +6,8 @@ from pycbc.waveform import td_approximants, fd_approximants
 from pycbc.filter import match
 from pycbc.psd import aLIGOZeroDetHighPower
 import matplotlib.pyplot as plt
+from matplotlib.figure import Figure
+
 
 # get the default args:
 default_args = (parameters.fd_waveform_params.default_dict() + \
@@ -30,7 +32,7 @@ hp, hc = pycbc.waveform.waveform.get_td_waveform(**q)
 #########################################################
 
 p = default_args
-p['mass1'] = 20
+#p['mass1'] = 20
 p['mass2'] = 30
 #p['spinx1'] = 0.5
 #p['spinx2'] = -0.5
@@ -38,22 +40,24 @@ p['delta_t'] = 1./4096
 p['f_lower'] = 40
 p['approximant'] = 'IMRPhenomD'
 
-nGR = ['dchi0','dchi1','dchi2','dchi3','dchi4','dchi5','dchi5l','dchi6','dchi6l','dchi7','phi1',
-'phi2','phi3','phi4','dxi1','dxi2','dxi3','dxi4','dxi5','dxi6','dsigma1','dsigma2','dsigma3',
-'dsigma4','dalpha1','dalpha2','dalpha3','dalpha4','dalpha5','dbeta1','dbeta2','dbeta3','alphaPPE',
-'alphaPPE0','alphaPPE1','alphaPPE2','alphaPPE3','alphaPPE4','alphaPPE5','alphaPPE6','alphaPPE7',
-'betaPPE','betaPPE0','betaPPE1','betaPPE2','betaPPE3','betaPPE4','betaPPE5','betaPPE6','betaPPE7']
+dchi0 = np.arange(-0.5, 0.5, 0.01)
+mass1 = np.arange(15, 45, 0.3) 
 
-for i in nGR:
-	j = 0.0
-	while True:
-		p['i'] = j
-	
-		#sp, sc = pycbc.waveform.waveform._lalsim_td_waveform(**p)
+# lower frequency
+f_low = 40
+
+# Empty match 2D array
+M = np.zeros([100, 100])
+
+k = 0
+
+for i in dchi0:
+	p['dchi7'] = i
+	l = 0	
+	for j in mass1:
+		# Iterating through the masses
+		p['mass1'] = j
 		sp, sc = pycbc.waveform.waveform.get_td_waveform(**p)
-
-		# Define lower frequency
-		f_low = 40
 
 		# Resize the waveforms to the same length
 		tlen = max(len(sp), len(hp))
@@ -64,25 +68,30 @@ for i in nGR:
 		delta_f = 1.0 / sp.duration
 		flen = tlen/2 + 1
 		psd = aLIGOZeroDetHighPower(flen, delta_f, f_low)
-
+	
 		# Note: This takes a while the first time as an FFT plan is generated
 		# subsequent calls are much faster.
 		m, i = match(hp, sp, psd=psd, low_frequency_cutoff=f_low)
-		#print 'The match is: %1.3f' % m	
-	
-		if m < 0.97:
-			break
-		else:
-			continue
-		
-		j += 0.001
+		#print 'The match is: %1.3f' % m
+		M[l, k] = m
+		l += 1
+	k += 1
+'''
+Plotting the result
+'''
+levels=np.array([0.97])
+x = 0.0
+y = 20.0
 
-	plt.figure('i')
-	plt.plot(hp.sample_times, hp, label = 'GR IMRPhenomD')
-	plt.plot(sp.sample_times, hp, label = 'Non-GR IMRPhenomD')
-	plt.xlabel('Time(s)', fontsize = 20)
-	plt.ylabel('h$_+$(m)', fontsize = 20)
-	plt.title(('IMRPhenomD, %s = %s, M_1 = 20 M_\odot, M_2 = 30 M_\odot$'%(i,j)), fontsize = 20) # S_{x_1} = 0.5, S_{x_2} = -0.5 $', fontsize = 20)
-	plt.legend(loc = 'best')
-	plt.grid()
-	plt.savfig('i'+'png')
+fig = plt.figure()
+ax = fig.add_subplot(1,1,1)
+i = ax.contourf(dchi0, mass1, M, 100)
+ax.set_ylabel('$M_1$', fontsize = 20)
+ax.set_xlabel('$d\chi_{7}$', fontsize = 20)
+ax.set_title('Match plot of varying $d\chi_{7}$ and $M_1$', fontsize = 20)
+ax.annotate('$\otimes$', (x, y))
+colorbar_ax = fig.add_axes([0.905, 0.11, 0.05, 0.77])
+fig.colorbar(i, cax = colorbar_ax)
+con = ax.contour(dchi0, mass1, M, 1 ,levels=levels)
+ax.clabel(con, color = 'k')
+plt.show()

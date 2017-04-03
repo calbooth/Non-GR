@@ -1,0 +1,16 @@
+000 (7032681.000.000) 03/30 22:46:12 Job submitted from host: <172.21.0.15:37501?addrs=172.21.0.15-37501>
+...
+001 (7032681.000.000) 03/30 22:46:14 Job executing on host: <172.20.1.43:42471?addrs=172.20.1.43-42471>
+...
+007 (7032681.000.000) 03/30 22:46:15 Shadow exception!
+	Error from slot1@9005@raven342.bullx: Failed to execute '/home/c1320229/non-GR/nonGR_IMRPhenomD.py': (errno=8: 'Exec format error')
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+...
+012 (7032681.000.000) 03/30 22:46:15 Job was held.
+	Error from slot1@9005@raven342.bullx: Failed to execute '/home/c1320229/non-GR/nonGR_IMRPhenomD.py': (errno=8: 'Exec format error')
+	Code 6 Subcode 8
+...
+009 (7032681.000.000) 04/03 09:16:47 Job was aborted by the user.
+	via condor_rm (by user c1320229)
+...

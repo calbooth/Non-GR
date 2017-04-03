@@ -87,7 +87,7 @@ for nonGR in nGR:
 	'''
 	plt.figure('%s'%nonGR)
 	plt.plot(hp.sample_times, hp, label = 'GR IMRPhenomD')
-	plt.plot(sp.sample_times, hp, label = 'Non-GR IMRPhenomD')
+	plt.plot(sp.sample_times, sp, label = 'Non-GR IMRPhenomD')
 	plt.xlabel('Time(s)', fontsize = 20)
 	plt.ylabel('h$_+$(m)', fontsize = 20)
 	plt.title(('$%s = %.2f, M_1 = 20 M_\odot, M_2 = 30 M_\odot$'%(nonGR,j)), fontsize = 20)	

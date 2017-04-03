@@ -38,7 +38,7 @@ p['delta_t'] = 1./4096
 p['f_lower'] = 40
 p['approximant'] = 'IMRPhenomD'
 
-nGR = ['dchi0','dchi1','dchi2','dchi3','dchi4','dchi5','dchi5l','dchi6','dchi6l','dchi7']#,'phi1',
+nGR = ['dchi0','dchi1','dchi2','dchi3','dchi4','dchi6','dchi7']#,'phi1',
 #'phi2','phi3','phi4','dxi1','dxi2','dxi3','dxi4','dxi5','dxi6','dsigma1','dsigma2','dsigma3',
 #'dsigma4','dalpha1','dalpha2','dalpha3','dalpha4','dalpha5','dbeta1','dbeta2','dbeta3','alphaPPE',
 #'alphaPPE0','alphaPPE1','alphaPPE2','alphaPPE3','alphaPPE4','alphaPPE5','alphaPPE6','alphaPPE7',

@@ -78,7 +78,6 @@ for nonGR in nGR:
 
 		# If the match is less than 0.97 then break from the loop
 		if m < 0.97:
-			print '%s = %.2f'%(nonGR, j)
 			break
 		# Increasing the non-GR value
 		j += 0.01
@@ -97,5 +96,5 @@ for nonGR in nGR:
 	plt.title(('$%s = %.2f, M_1 = 20 M_\odot, M_2 = 30 M_\odot$'%(nonGR,j)), fontsize = 20)	
 	plt.legend(loc = 'best')
 	plt.grid()
+	plt.draw()
 	plt.savefig('%s'%nonGR+'.png')
-	plt.show()

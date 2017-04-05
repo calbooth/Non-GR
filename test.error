@@ -1,12 +1,27 @@
 Traceback (most recent call last):
-  File "/home/c1320229/non-GR/nonGR_IMRPhenomPv2.py", line 91, in <module>
-    plt.figure('%s'%nonGR)
-  File "/home/c1320229/src/pycbc/lib/python2.7/site-packages/matplotlib/pyplot.py", line 535, in figure
-    **kwargs)
-  File "/home/c1320229/src/pycbc/lib/python2.7/site-packages/matplotlib/backends/backend_tkagg.py", line 81, in new_figure_manager
-    return new_figure_manager_given_figure(num, figure)
-  File "/home/c1320229/src/pycbc/lib/python2.7/site-packages/matplotlib/backends/backend_tkagg.py", line 89, in new_figure_manager_given_figure
-    window = Tk.Tk()
-  File "/software/physics/ligo/spack/000/linux-redhat6-x86_64/gcc-5.4.0/ldg/pickxdy/lib/python2.7/lib-tk/Tkinter.py", line 1815, in __init__
-    self.tk = _tkinter.create(screenName, baseName, className, interactive, wantobjects, useTk, sync, use)
-_tkinter.TclError: couldn't connect to display "localhost:14.0"
+  File "/home/c1320229/non-GR/nonGR_IMRPhenomPv2.py", line 74, in <module>
+    m, i = match(hp, sp, psd=psd, low_frequency_cutoff=f_low)
+  File "/home/c1320229/src/pycbc/lib/python2.7/site-packages/PyCBC-54c7a0-py2.7.egg/pycbc/filter/matchedfilter.py", line 1151, in match
+    high_frequency_cutoff, v1_norm, out=_snr)
+  File "/home/c1320229/src/pycbc/lib/python2.7/site-packages/PyCBC-54c7a0-py2.7.egg/pycbc/filter/matchedfilter.py", line 1026, in matched_filter_core
+    correlate(htilde[kmin:kmax], stilde[kmin:kmax], _qtilde[kmin:kmax])
+  File "<decorator-gen-158>", line 2, in correlate
+  File "/home/c1320229/src/pycbc/lib/python2.7/site-packages/PyCBC-54c7a0-py2.7.egg/pycbc/scheme.py", line 184, in scheming_function
+    return schemed_fn(*args, **kwds)
+  File "/home/c1320229/src/pycbc/lib/python2.7/site-packages/PyCBC-54c7a0-py2.7.egg/pycbc/filter/matchedfilter_cpu.py", line 133, in correlate_inline
+    libraries=omp_libs
+  File "/home/c1320229/src/pycbc/lib/python2.7/site-packages/scipy/weave/inline_tools.py", line 366, in inline
+    **kw)
+  File "/home/c1320229/src/pycbc/lib/python2.7/site-packages/PyCBC-54c7a0-py2.7.egg/pycbc/weave.py", line 55, in pycbc_compile_function
+    auto_downcast, **kw)
+  File "/home/c1320229/src/pycbc/lib/python2.7/site-packages/scipy/weave/inline_tools.py", line 496, in compile_function
+    verbose=verbose, **kw)
+  File "/home/c1320229/src/pycbc/lib/python2.7/site-packages/scipy/weave/ext_tools.py", line 373, in compile
+    verbose=verbose, **kw)
+  File "/home/c1320229/src/pycbc/lib/python2.7/site-packages/scipy/weave/build_tools.py", line 279, in build_extension
+    setup(name=module_name, ext_modules=[ext],verbose=verb)
+  File "/home/c1320229/src/pycbc/lib/python2.7/site-packages/numpy/distutils/core.py", line 169, in setup
+    return old_setup(**new_attr)
+  File "/software/physics/ligo/spack/000/linux-redhat6-x86_64/gcc-5.4.0/ldg/pickxdy/lib/python2.7/distutils/core.py", line 166, in setup
+    raise SystemExit, "error: " + str(msg)
+scipy.weave.build_tools.CompileError: error: Command "/software/physics/ligo/spack/000/linux-redhat6-x86_64/gcc-5.4.0/gcc-5.4.0-zykvxwpr5j3x5hwcjlon/bin/g++ -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -fPIC -I/home/c1320229/src/pycbc/lib/python2.7/site-packages/scipy/weave -I/home/c1320229/src/pycbc/lib/python2.7/site-packages/scipy/weave/scxx -I/home/c1320229/src/pycbc/lib/python2.7/site-packages/numpy/core/include -I/software/physics/ligo/spack/000/linux-redhat6-x86_64/gcc-5.4.0/ldg/pickxdy/include/python2.7 -c /home/c1320229/src/pycbc/lib/python2.7/site-packages/scipy/weave/scxx/weave_imp.cpp -o /tmp/Condor-execute.172.20.0.76-10586/dir_13308/scipy-c1320229-N9haZb/python27_intermediate/compiler_fb1f2b693f5ae930a6ffffce2c6209b2/home/c1320229/src/pycbc/lib/python2.7/site-packages/scipy/weave/scxx/weave_imp.o -march=native -O3 -w  -fopenmp" failed with exit status 1

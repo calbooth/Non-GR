@@ -20,7 +20,7 @@ q['mass2'] = 30
 #q['spinx1'] = 0.5
 #q['spinx2'] = -0.5
 q['delta_t'] = 1./4096
-q['f_lower'] = 15
+q['f_lower'] = 20
 q['approximant'] = 'IMRPhenomPv2'
 
 hp, hc = pycbc.waveform.waveform.get_td_waveform(**q) # Generte GR waveform
@@ -31,7 +31,7 @@ tlen = 2.0**tlen # Raise 2 to the nearest integer to help FFT go faster
 tlen = int(tlen)
 
 hp.resize(tlen) # Resize hp
-f_low = 15 # Lowest frequency
+f_low = 20 # Lowest frequency
 
 # Generate the aLIGO ZDHP PSD
 delta_f = 1.0 / hp.duration # Frequency incirment
@@ -50,7 +50,7 @@ p['mass2'] = 30
 #p['spinx1'] = 0.5
 #p['spinx2'] = -0.5
 p['delta_t'] = 1./4096
-p['f_lower'] = 15
+p['f_lower'] = 20
 p['approximant'] = 'IMRPhenomPv2'
 
 nGR = ['dchi0','dchi1','dchi2','dchi3','dchi4','dchi6',
@@ -65,9 +65,6 @@ for nonGR in nGR:
 		p[str(nonGR)] = j
 	
 		sp, sc = pycbc.waveform.waveform.get_td_waveform(**p)
-		
-		# Define lower frequency
-		f_low = 40
 	
 		# Resize the waveforms to the same length
 		sp.resize(tlen)
@@ -77,7 +74,7 @@ for nonGR in nGR:
 		m, i = match(hp, sp, psd=psd, low_frequency_cutoff=f_low)
 
 		# If the match is less than 0.97 then break from the loop
-		if m < 0.97:
+		if m <= 0.97:
 			break
 		# Increasing the non-GR value
 		j += 0.01
@@ -89,12 +86,12 @@ for nonGR in nGR:
 	Plotting and saving the waveforms
 	'''
 	plt.figure('%s'%nonGR)
-	plt.plot(hp.sample_times, hp, label = 'GR IMRPhenomD')
-	plt.plot(sp.sample_times, sp, label = 'Non-GR IMRPhenomD')
+	plt.plot(hp.sample_times, hp, label = 'GR IMRPhenomPv2')
+	plt.plot(sp.sample_times, sp, label = 'Non-GR IMRPhenomPv2')
 	plt.xlabel('Time(s)', fontsize = 20)
 	plt.ylabel('h$_+$(m)', fontsize = 20)
 	plt.title(('$%s = %.2f, M_1 = 20 M_\odot, M_2 = 30 M_\odot$'%(nonGR,j)), fontsize = 20)	
 	plt.legend(loc = 'best')
 	plt.grid()
 	plt.draw()
-	plt.savefig('%s'%nonGR+'.png')
+	plt.savefig('%s'%nonGR+'.png', bbox = 'tight')

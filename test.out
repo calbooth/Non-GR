@@ -1,2 +1,68 @@
 
-creating /tmp/Condor-execute.172.20.1.43-3189/dir_25225/scipy-c1320229-OrQE7F/python27_intermediate/compiler_fb1f2b693f5ae930a6ffffce2c6209b2
+creating /tmp/Condor-execute.172.20.0.76-10586/dir_13308/scipy-c1320229-N9haZb/python27_intermediate/compiler_fb1f2b693f5ae930a6ffffce2c6209b2
+In file included from /home/c1320229/src/pycbc/lib/python2.7/site-packages/scipy/weave/scxx/object.h:14:0,
+                 from /home/c1320229/src/pycbc/lib/python2.7/site-packages/scipy/weave/scxx/weave_imp.cpp:7:
+/software/physics/ligo/spack/000/linux-redhat6-x86_64/gcc-5.4.0/gcc-5.4.0-zykvxwpr5j3x5hwcjlon/include/c++/5.4.0/complex:795:5: internal compiler error: Illegal instruction
+     { return std::log(__z) / log(_Tp(10.0)); }
+     ^
+0xaa0a0f crash_signal
+	/software/physics/ligo/spack/000/var/spack/stage/gcc-5.4.0-zykvxwpr5j3x5hwcjlonb2ybfhdfvv33/gcc-5.4.0/gcc/toplev.c:383
+0x2b55695f3ef6 parsed_string_to_mpfr
+	/dev/shm/spxlsc/spack-stage/spack-stage-xw1DQJ/mpfr-3.1.4/src/strtofr.c:518
+0x2b55695f52d0 mpfr_strtofr
+	/dev/shm/spxlsc/spack-stage/spack-stage-xw1DQJ/mpfr-3.1.4/src/strtofr.c:833
+0xa1b38d real_from_string(real_value*, char const*)
+	/software/physics/ligo/spack/000/var/spack/stage/gcc-5.4.0-zykvxwpr5j3x5hwcjlonb2ybfhdfvv33/gcc-5.4.0/gcc/real.c:2057
+0xa1bddc real_from_string3(real_value*, char const*, machine_mode)
+	/software/physics/ligo/spack/000/var/spack/stage/gcc-5.4.0-zykvxwpr5j3x5hwcjlonb2ybfhdfvv33/gcc-5.4.0/gcc/real.c:2123
+0x736a13 interpret_float
+	/software/physics/ligo/spack/000/var/spack/stage/gcc-5.4.0-zykvxwpr5j3x5hwcjlonb2ybfhdfvv33/gcc-5.4.0/gcc/c-family/c-lex.c:897
+0x7376bc c_lex_with_flags(tree_node**, unsigned int*, unsigned char*, int)
+	/software/physics/ligo/spack/000/var/spack/stage/gcc-5.4.0-zykvxwpr5j3x5hwcjlonb2ybfhdfvv33/gcc-5.4.0/gcc/c-family/c-lex.c:442
+0x65967f cp_lexer_get_preprocessor_token
+	/software/physics/ligo/spack/000/var/spack/stage/gcc-5.4.0-zykvxwpr5j3x5hwcjlonb2ybfhdfvv33/gcc-5.4.0/gcc/cp/parser.c:779
+0x6882b8 cp_lexer_new_main
+	/software/physics/ligo/spack/000/var/spack/stage/gcc-5.4.0-zykvxwpr5j3x5hwcjlonb2ybfhdfvv33/gcc-5.4.0/gcc/cp/parser.c:660
+0x6882b8 cp_parser_new
+	/software/physics/ligo/spack/000/var/spack/stage/gcc-5.4.0-zykvxwpr5j3x5hwcjlonb2ybfhdfvv33/gcc-5.4.0/gcc/cp/parser.c:3484
+0x6882b8 c_parse_file()
+	/software/physics/ligo/spack/000/var/spack/stage/gcc-5.4.0-zykvxwpr5j3x5hwcjlonb2ybfhdfvv33/gcc-5.4.0/gcc/cp/parser.c:33230
+0x73c292 c_common_parse_file()
+	/software/physics/ligo/spack/000/var/spack/stage/gcc-5.4.0-zykvxwpr5j3x5hwcjlonb2ybfhdfvv33/gcc-5.4.0/gcc/c-family/c-opts.c:1057
+Please submit a full bug report,
+with preprocessed source if appropriate.
+Please include the complete backtrace with any bug report.
+See <http://gcc.gnu.org/bugs.html> for instructions.
+In file included from /home/c1320229/src/pycbc/lib/python2.7/site-packages/scipy/weave/scxx/object.h:14:0,
+                 from /home/c1320229/src/pycbc/lib/python2.7/site-packages/scipy/weave/scxx/weave_imp.cpp:7:
+/software/physics/ligo/spack/000/linux-redhat6-x86_64/gcc-5.4.0/gcc-5.4.0-zykvxwpr5j3x5hwcjlon/include/c++/5.4.0/complex:795:5: internal compiler error: Illegal instruction
+     { return std::log(__z) / log(_Tp(10.0)); }
+     ^
+0xaa0a0f crash_signal
+	/software/physics/ligo/spack/000/var/spack/stage/gcc-5.4.0-zykvxwpr5j3x5hwcjlonb2ybfhdfvv33/gcc-5.4.0/gcc/toplev.c:383
+0x2b55695f3ef6 parsed_string_to_mpfr
+	/dev/shm/spxlsc/spack-stage/spack-stage-xw1DQJ/mpfr-3.1.4/src/strtofr.c:518
+0x2b55695f52d0 mpfr_strtofr
+	/dev/shm/spxlsc/spack-stage/spack-stage-xw1DQJ/mpfr-3.1.4/src/strtofr.c:833
+0xa1b38d real_from_string(real_value*, char const*)
+	/software/physics/ligo/spack/000/var/spack/stage/gcc-5.4.0-zykvxwpr5j3x5hwcjlonb2ybfhdfvv33/gcc-5.4.0/gcc/real.c:2057
+0xa1bddc real_from_string3(real_value*, char const*, machine_mode)
+	/software/physics/ligo/spack/000/var/spack/stage/gcc-5.4.0-zykvxwpr5j3x5hwcjlonb2ybfhdfvv33/gcc-5.4.0/gcc/real.c:2123
+0x736a13 interpret_float
+	/software/physics/ligo/spack/000/var/spack/stage/gcc-5.4.0-zykvxwpr5j3x5hwcjlonb2ybfhdfvv33/gcc-5.4.0/gcc/c-family/c-lex.c:897
+0x7376bc c_lex_with_flags(tree_node**, unsigned int*, unsigned char*, int)
+	/software/physics/ligo/spack/000/var/spack/stage/gcc-5.4.0-zykvxwpr5j3x5hwcjlonb2ybfhdfvv33/gcc-5.4.0/gcc/c-family/c-lex.c:442
+0x65967f cp_lexer_get_preprocessor_token
+	/software/physics/ligo/spack/000/var/spack/stage/gcc-5.4.0-zykvxwpr5j3x5hwcjlonb2ybfhdfvv33/gcc-5.4.0/gcc/cp/parser.c:779
+0x6882b8 cp_lexer_new_main
+	/software/physics/ligo/spack/000/var/spack/stage/gcc-5.4.0-zykvxwpr5j3x5hwcjlonb2ybfhdfvv33/gcc-5.4.0/gcc/cp/parser.c:660
+0x6882b8 cp_parser_new
+	/software/physics/ligo/spack/000/var/spack/stage/gcc-5.4.0-zykvxwpr5j3x5hwcjlonb2ybfhdfvv33/gcc-5.4.0/gcc/cp/parser.c:3484
+0x6882b8 c_parse_file()
+	/software/physics/ligo/spack/000/var/spack/stage/gcc-5.4.0-zykvxwpr5j3x5hwcjlonb2ybfhdfvv33/gcc-5.4.0/gcc/cp/parser.c:33230
+0x73c292 c_common_parse_file()
+	/software/physics/ligo/spack/000/var/spack/stage/gcc-5.4.0-zykvxwpr5j3x5hwcjlonb2ybfhdfvv33/gcc-5.4.0/gcc/c-family/c-opts.c:1057
+Please submit a full bug report,
+with preprocessed source if appropriate.
+Please include the complete backtrace with any bug report.
+See <http://gcc.gnu.org/bugs.html> for instructions.

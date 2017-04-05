@@ -14,3 +14,73 @@
 009 (7032681.000.000) 04/03 09:16:47 Job was aborted by the user.
 	via condor_rm (by user c1320229)
 ...
+000 (7056871.000.000) 04/03 21:57:44 Job submitted from host: <172.21.0.15:37501?addrs=172.21.0.15-37501>
+...
+001 (7056871.000.000) 04/03 21:59:05 Job executing on host: <172.20.1.47:42637?addrs=172.20.1.47-42637>
+...
+007 (7056871.000.000) 04/03 21:59:05 Shadow exception!
+	Error from slot1@45756@raven346.bullx: Failed to execute '/home/c1320229/non-GR/nonGR_IMRPhenomPv2.py': (errno=8: 'Exec format error')
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+...
+012 (7056871.000.000) 04/03 21:59:10 Job was held.
+	Error from slot1@45756@raven346.bullx: Failed to execute '/home/c1320229/non-GR/nonGR_IMRPhenomPv2.py': (errno=8: 'Exec format error')
+	Code 6 Subcode 8
+...
+000 (7070121.000.000) 04/05 14:39:57 Job submitted from host: <172.21.0.15:37501?addrs=172.21.0.15-37501>
+...
+001 (7070121.000.000) 04/05 14:42:01 Job executing on host: <172.20.0.78:57372?addrs=172.20.0.78-57372>
+...
+006 (7070121.000.000) 04/05 14:42:10 Image size of job updated: 3
+	4  -  MemoryUsage of job (MB)
+	3496  -  ResidentSetSize of job (KB)
+...
+006 (7070121.000.000) 04/05 14:42:32 Image size of job updated: 626776
+	4  -  MemoryUsage of job (MB)
+	3496  -  ResidentSetSize of job (KB)
+...
+005 (7070121.000.000) 04/05 14:42:33 Job terminated.
+	(1) Normal termination (return value 1)
+		Usr 0 00:00:01, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:01, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated
+	   Cpus                 :                 1         1
+	   Disk (KB)            :        3        3    607035
+	   Memory (MB)          :        4        1         1
+...
+009 (7056871.000.000) 04/05 14:46:33 Job was aborted by the user.
+	via condor_rm (by user c1320229)
+...
+000 (7070162.000.000) 04/05 14:51:54 Job submitted from host: <172.21.0.15:37501?addrs=172.21.0.15-37501>
+...
+001 (7070162.000.000) 04/05 14:52:24 Job executing on host: <172.20.0.92:40540?addrs=172.20.0.92-40540>
+...
+006 (7070162.000.000) 04/05 14:52:32 Image size of job updated: 253092
+	19  -  MemoryUsage of job (MB)
+	19248  -  ResidentSetSize of job (KB)
+...
+006 (7070162.000.000) 04/05 14:53:00 Image size of job updated: 532664
+	19  -  MemoryUsage of job (MB)
+	19248  -  ResidentSetSize of job (KB)
+...
+005 (7070162.000.000) 04/05 14:53:16 Job terminated.
+	(1) Normal termination (return value 1)
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated
+	   Cpus                 :                 1         1
+	   Disk (KB)            :        3        3    605020
+	   Memory (MB)          :       19        1         1
+...

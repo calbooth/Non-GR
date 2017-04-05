@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-executable     = /home/c1320229/non-GR/nonGR_IMRPhenomD.py
+executable     = /home/c1320229/non-GR/nonGR_IMRPhenomPv2.py
 universe       = vanilla
 getenv         = True
 output         = test.out

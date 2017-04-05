@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import numpy as np
 import pycbc
 import pycbc.waveform.waveform
@@ -6,6 +8,7 @@ from pycbc.waveform import td_approximants, fd_approximants
 from pycbc.filter import match
 from pycbc.psd import aLIGOZeroDetHighPower
 import matplotlib.pyplot as plt
+import math
 
 # get the default args:
 default_args = (parameters.fd_waveform_params.default_dict() + \
@@ -17,12 +20,24 @@ q['mass2'] = 30
 #q['spinx1'] = 0.5
 #q['spinx2'] = -0.5
 q['delta_t'] = 1./4096
-q['f_lower'] = 40
-q['approximant'] = 'IMRPhenomD'
+q['f_lower'] = 15
+q['approximant'] = 'IMRPhenomPv2'
 
-#hp, hc = pycbc.waveform.waveform._lalsim_td_waveform(**q)
+hp, hc = pycbc.waveform.waveform.get_td_waveform(**q) # Generte GR waveform
+tlen = len(hp) # Create parameter tlen
+tlen = math.log(tlen, 2) # Take the log base 2 of tlen
+tlen = math.ceil(tlen) # Round up to the nearest integer (result is a float)
+tlen = 2.0**tlen # Raise 2 to the nearest integer to help FFT go faster
+tlen = int(tlen)
 
-hp, hc = pycbc.waveform.waveform.get_td_waveform(**q)
+hp.resize(tlen) # Resize hp
+f_low = 15 # Lowest frequency
+
+# Generate the aLIGO ZDHP PSD
+delta_f = 1.0 / hp.duration # Frequency incirment
+flen = tlen/2 + 1 
+psd = aLIGOZeroDetHighPower(flen, delta_f, f_low) # Creating PSD
+
 
 
 #########################################################
@@ -35,15 +50,11 @@ p['mass2'] = 30
 #p['spinx1'] = 0.5
 #p['spinx2'] = -0.5
 p['delta_t'] = 1./4096
-p['f_lower'] = 40
-p['approximant'] = 'IMRPhenomD'
+p['f_lower'] = 15
+p['approximant'] = 'IMRPhenomPv2'
 
-nGR = ['dchi0','dchi1','dchi2','dchi3','dchi4','dchi6','dchi7']#,'phi1',
-#'phi2','phi3','phi4','dxi1','dxi2','dxi3','dxi4','dxi5','dxi6','dsigma1','dsigma2','dsigma3',
-#'dsigma4','dalpha1','dalpha2','dalpha3','dalpha4','dalpha5','dbeta1','dbeta2','dbeta3','alphaPPE',
-#'alphaPPE0','alphaPPE1','alphaPPE2','alphaPPE3','alphaPPE4','alphaPPE5','alphaPPE6','alphaPPE7',
-#'betaPPE','betaPPE0','betaPPE1','betaPPE2','betaPPE3','betaPPE4','betaPPE5','betaPPE6','betaPPE7']
-
+nGR = ['dchi0','dchi1','dchi2','dchi3','dchi4','dchi6',
+'dalpha2','dalpha3','dalpha4','dbeta2','dbeta3']
 
 # Looping through the list
 for nonGR in nGR:
@@ -59,21 +70,11 @@ for nonGR in nGR:
 		f_low = 40
 	
 		# Resize the waveforms to the same length
-		tlen = max(len(sp), len(hp))
 		sp.resize(tlen)
-		hp.resize(tlen)
-	
-		# Generate the aLIGO ZDHP PSD
-		delta_f = 1.0 / sp.duration
-		flen = tlen/2 + 1
-		psd = aLIGOZeroDetHighPower(flen, delta_f, f_low)
 	
 		# Note: This takes a while the first time as an FFT plan is generated
 		# subsequent calls are much faster.
 		m, i = match(hp, sp, psd=psd, low_frequency_cutoff=f_low)
-		
-		# Re-setting the non-GR parameter to zero.
-                p[str(nonGR)] = 0
 
 		# If the match is less than 0.97 then break from the loop
 		if m < 0.97:
@@ -81,6 +82,9 @@ for nonGR in nGR:
 			break
 		# Increasing the non-GR value
 		j += 0.01
+	
+	# Re-setting the non-GR parameter to zero.
+        p[str(nonGR)] = 0
 
 	'''
 	Plotting and saving the waveforms
@@ -94,3 +98,4 @@ for nonGR in nGR:
 	plt.legend(loc = 'best')
 	plt.grid()
 	plt.savefig('%s'%nonGR+'.png')
+	plt.show()

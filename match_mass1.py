@@ -20,7 +20,7 @@ q['mass2'] = 30
 #q['spinx2'] = -0.5
 q['delta_t'] = 1./4096
 q['f_lower'] = 40
-q['approximant'] = 'IMRPhenomD'
+q['approximant'] = 'IMRPhenomPv2'
 
 #hp, hc = pycbc.waveform.waveform._lalsim_td_waveform(**q)
 
@@ -38,7 +38,7 @@ p['mass2'] = 30
 #p['spinx2'] = -0.5
 p['delta_t'] = 1./4096
 p['f_lower'] = 40
-p['approximant'] = 'IMRPhenomD'
+p['approximant'] = 'IMRPhenomPv2'
 
 dchi0 = np.arange(-0.5, 0.5, 0.01)
 mass1 = np.arange(15, 45, 0.3) 
@@ -52,7 +52,7 @@ M = np.zeros([100, 100])
 k = 0
 
 for i in dchi0:
-	p['dchi7'] = i
+	p['dalpha4'] = i
 	l = 0	
 	for j in mass1:
 		# Iterating through the masses
@@ -87,11 +87,12 @@ fig = plt.figure()
 ax = fig.add_subplot(1,1,1)
 i = ax.contourf(dchi0, mass1, M, 100)
 ax.set_ylabel('$M_1$', fontsize = 20)
-ax.set_xlabel('$d\chi_{7}$', fontsize = 20)
-ax.set_title('Match plot of varying $d\chi_{7}$ and $M_1$', fontsize = 20)
+ax.set_xlabel('$dalpha_{4}$', fontsize = 20)
+ax.set_title('Match plot of varying $dalpha_{4}$ and $M_1$', fontsize = 20)
 ax.annotate('$\otimes$', (x, y))
 colorbar_ax = fig.add_axes([0.905, 0.11, 0.05, 0.77])
 fig.colorbar(i, cax = colorbar_ax)
 con = ax.contour(dchi0, mass1, M, 1 ,levels=levels)
 ax.clabel(con, color = 'k')
+plt.savefig('dalpha4')
 plt.show()

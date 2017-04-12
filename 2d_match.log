@@ -1,0 +1,52 @@
+000 (7081737.000.000) 04/12 21:46:42 Job submitted from host: <172.21.0.15:37501?addrs=172.21.0.15-37501>
+...
+001 (7081737.000.000) 04/12 21:46:49 Job executing on host: <172.20.1.27:53487?addrs=172.20.1.27-53487>
+...
+006 (7081737.000.000) 04/12 21:46:58 Image size of job updated: 983404
+	70  -  MemoryUsage of job (MB)
+	71404  -  ResidentSetSize of job (KB)
+...
+006 (7081737.000.000) 04/12 21:51:59 Image size of job updated: 1086248
+	98  -  MemoryUsage of job (MB)
+	99540  -  ResidentSetSize of job (KB)
+...
+004 (7081737.000.000) 04/12 21:56:57 Job was evicted.
+	(0) Job was not checkpointed.
+		Usr 0 00:22:51, Sys 0 00:00:02  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated
+	   Cpus                 :                12        12
+	   Disk (KB)            :        3        3    610175
+	   Memory (MB)          :       98        1         1
+...
+009 (7081737.000.000) 04/12 21:56:57 Job was aborted by the user.
+	via condor_rm (by user c1320229)
+...
+000 (7081738.000.000) 04/12 21:58:26 Job submitted from host: <172.21.0.15:37501?addrs=172.21.0.15-37501>
+...
+001 (7081738.000.000) 04/12 21:58:46 Job executing on host: <172.20.1.27:53487?addrs=172.20.1.27-53487>
+...
+006 (7081738.000.000) 04/12 21:58:55 Image size of job updated: 1086236
+	94  -  MemoryUsage of job (MB)
+	95632  -  ResidentSetSize of job (KB)
+...
+006 (7081738.000.000) 04/12 22:03:55 Image size of job updated: 1086236
+	98  -  MemoryUsage of job (MB)
+	99552  -  ResidentSetSize of job (KB)
+...
+004 (7081738.000.000) 04/12 22:07:33 Job was evicted.
+	(0) Job was not checkpointed.
+		Usr 0 00:19:37, Sys 0 00:00:02  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated
+	   Cpus                 :                12        12
+	   Disk (KB)            :        3        3    610173
+	   Memory (MB)          :       98        1         1
+...
+009 (7081738.000.000) 04/12 22:07:33 Job was aborted by the user.
+	via condor_rm (by user c1320229)
+...

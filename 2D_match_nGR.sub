@@ -1,0 +1,12 @@
+#!/usr/bin/env python
+
+executable = /home/c1320229/non-GR/nonGR_m1_match.py
+universe       = vanilla
+getenv         = True
+output         = 2d_match.out
+error          = 2d_match.error
+log            = 2d_match.log
+request_cpus = 12
+accounting_group = aluk.dev.o2.cbc.explore.test
+queue
+

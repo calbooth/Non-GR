@@ -49,7 +49,9 @@ p['delta_t'] = 1./4096
 p['f_lower'] = 15
 p['approximant'] = 'IMRPhenomPv2'
 
-nGR = ['dalpha3']#, 'dbeta3', 'dalpha2', 'dalpha3','dalpha4' ] # hashed out to test one param
+nGR = ['dchi0','dchi1','dchi2','dchi3','dchi4','dchi6',
+'dalpha2','dalpha3','dalpha4','dbeta2','dbeta3'] # hashed out to test one param
+
 ngrparam = np.arange(-0.5, 0.5, 0.01) # range of nGR params
 mass1 = np.linspace(15, 45, 100) # Range of masses
 
@@ -93,11 +95,11 @@ for nonGR in nGR:
 	cont = ax.contourf(ngrparam, mass1, M, 100)
 	ax.set_ylabel('$M_1$', fontsize = 20)
 	ax.set_xlabel('%s'%nonGR, fontsize = 20)
-	ax.set_title('Match plot of varying %s and $M_1$'%nonGR, fontsize = 20)
-	ax.annotate('$\otimes$', (x, y))
+	#ax.set_title('Match plot of varying %s and $M_1$'%nonGR, fontsize = 20)
+	ax.annotate('$\otimes$', (x, y), fontsize = 15)
 	colorbar_ax = fig.add_axes([0.905, 0.11, 0.05, 0.77])
 	fig.colorbar(cont, cax = colorbar_ax)
-	con = ax.contour(dchi0, mass1, M, 1 ,levels=levels)
+	con = ax.contour(ngrparam, mass1, M, 1 ,levels=levels)
 	ax.clabel(con, color = 'k')
-	plt.savefig('%s'%nonGR)
-	plt.show()
+	plt.savefig('%s'%nonGR + 'mass1.png')
+	plt.close()

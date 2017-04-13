@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+import matplotlib
+matplotlib.use('Agg')
+
 import numpy as np
 import pycbc
 import pycbc.waveform.waveform
@@ -8,6 +11,7 @@ from pycbc.waveform import td_approximants, fd_approximants
 from pycbc.filter import match
 from pycbc.psd import aLIGOZeroDetHighPower
 import matplotlib.pyplot as plt
+import matplotlib
 import math
 
 # get the default args:
@@ -78,7 +82,7 @@ for nonGR in nGR:
 			break
 		# Increasing the non-GR value
 		j += 0.01
-	
+	print '%s'%nonGR	
 	# Re-setting the non-GR parameter to zero.
         p[str(nonGR)] = 0
 
@@ -94,5 +98,5 @@ for nonGR in nGR:
 	plt.legend(loc = 'best')
 	plt.grid()
 	plt.draw()
-	plt.savefig('%s'%nonGR+'zero_spin.png', bbox = 'tight')
+	plt.savefig('/home/c1320229/non-GR/%s'%nonGR+'zero_spin.png', bbox = 'tight')
 	plt.close()

@@ -7,5 +7,7 @@ output         = GR_nGR.out
 error          = GR_nGR.error
 log            = GR_nGR.log
 request_cpus = 12
+should_transfer_files = yes
+WhenToTransferOutput = on_exit
 accounting_group = aluk.dev.o2.cbc.explore.test
 queue

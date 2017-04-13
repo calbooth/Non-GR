@@ -6,5 +6,8 @@ getenv         = True
 output         = test.out
 error          = test.error
 log            = test.log
+request_cpus = 12
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
 accounting_group = aluk.dev.o2.cbc.explore.test
 queue

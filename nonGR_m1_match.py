@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+import matplotlib
+
+matplotlib.use('Agg')
+
 import numpy as np
 import pycbc
 import pycbc.waveform.waveform
@@ -101,5 +105,5 @@ for nonGR in nGR:
 	fig.colorbar(cont, cax = colorbar_ax)
 	con = ax.contour(ngrparam, mass1, M, 1 ,levels=levels)
 	ax.clabel(con, color = 'k')
-	plt.savefig('%s'%nonGR + 'mass1.png')
+	plt.savefig('/home/c1320229/non-GR/%s'%nonGR + 'mass1.png')
 	plt.close()

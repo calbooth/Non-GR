@@ -18,22 +18,26 @@ import math
 default_args = (parameters.fd_waveform_params.default_dict() + \
     parameters.td_waveform_params).default_dict()
 
+default_args_ngr = (parameters.fd_waveform_params.default_dict() + \
+    parameters.td_waveform_params).default_dict()
+
 q = default_args
 q['mass1'] = 20
 q['mass2'] = 30
 q['delta_t'] = 1./4096
-q['f_lower'] = 15
+q['f_lower'] = 20
 q['approximant'] = 'IMRPhenomPv2'
 
 hp, hc = pycbc.waveform.waveform.get_td_waveform(**q)
 # Define lower frequency
-f_low = 15
+f_low = 20
 
 # Resize the waveforms to the same length
 tlen = len(hp)
 tlen = math.log(tlen, 2)
 tlen = math.ceil(tlen)
 tlen = 2.0**tlen
+tlen = 2.0*tlen
 tlen = int(tlen)
 		
 hp.resize(tlen)
@@ -47,10 +51,10 @@ psd = aLIGOZeroDetHighPower(flen, delta_f, f_low)
 ##--------------------NON GR PARAMS--------------------##
 #########################################################
 
-p = default_args
+p = default_args_ngr
 p['mass2'] = 30
 p['delta_t'] = 1./4096
-p['f_lower'] = 15
+p['f_lower'] = 20
 p['approximant'] = 'IMRPhenomPv2'
 
 nGR = ['dchi0','dchi1','dchi2','dchi3','dchi4','dchi6',
@@ -105,5 +109,5 @@ for nonGR in nGR:
 	fig.colorbar(cont, cax = colorbar_ax)
 	con = ax.contour(ngrparam, mass1, M, 1 ,levels=levels)
 	ax.clabel(con, color = 'k')
-	plt.savefig('/home/c1320229/non-GR/%s'%nonGR + 'mass1.png')
+	plt.savefig('/home/c1320229/non-GR/%s'%nonGR + 'mass1.png', bbox  = 'tight')
 	plt.close()

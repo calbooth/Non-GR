@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+import matplotlib
+
+matplotlib.use('Agg')
+
 import numpy as np
 import pycbc
 import pycbc.waveform.waveform
@@ -57,9 +61,9 @@ p['delta_t'] = 1./4096
 p['f_lower'] = 20
 p['approximant'] = 'IMRPhenomPv2'
 
-M1 = np.linspace(5, 35, 100) # The mass array
-pmatch = np.zeros(100) # Non-GR match array
-qmatch = np.zeros(100) # GR match array
+M1 = np.linspace(5, 35, 1000) # The mass array
+pmatch = np.zeros(1000) # Non-GR match array
+qmatch = np.zeros(1000) # GR match array
 
 #val = np.linspace(-0.5, 0.5, 10)
 
@@ -108,8 +112,8 @@ for ii in val:
 
 	# Plotting the point with maximum match  where the curves intersect
 	max_y = np.argmax(y_int)
-	y_int = max(y_int)
-	x_int = x_int[int(max_y)]	
+	y_int = np.array(max(y_int))
+	x_int = np.array(x_int[int(max_y)])	
 
 	m = ax.plot(x_int, y_int, 'ro')
 
@@ -122,6 +126,6 @@ for ii in val:
 	ax.set_xlim(5, 35)
 	plt.legend(loc = 'best')
 	plt.grid()
-	plt.savefig('intercept_dchi0_' + '%s'%ii + '.png', bbox = 'tight')
+	plt.savefig('/home/c1320229/non-GR/intercept_dchi0_' + '%s'%ii + '.png', bbox = 'tight')
 #	plt.show()
 	plt.close()

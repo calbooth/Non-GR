@@ -18,6 +18,9 @@ import math
 default_args = (parameters.fd_waveform_params.default_dict() + \
     parameters.td_waveform_params).default_dict()
 
+default_args_ngr = (parameters.fd_waveform_params.default_dict() + \
+    parameters.td_waveform_params).default_dict()
+
 q = default_args
 q['mass1'] = 20
 q['mass2'] = 30
@@ -32,6 +35,7 @@ tlen = len(hp) # Create parameter tlen
 tlen = math.log(tlen, 2) # Take the log base 2 of tlen
 tlen = math.ceil(tlen) # Round up to the nearest integer (result is a float)
 tlen = 2.0**tlen # Raise 2 to the nearest integer to help FFT go faster
+tlen = 2.0*tlen
 tlen = int(tlen)
 
 hp.resize(tlen) # Resize hp
@@ -48,7 +52,7 @@ psd = aLIGOZeroDetHighPower(flen, delta_f, f_low) # Creating PSD
 ##--------------------NON GR PARAMS--------------------##
 #########################################################
 
-p = default_args
+p = default_args_ngr
 p['mass1'] = 20
 p['mass2'] = 30
 #p['spinx1'] = 0.5
@@ -82,7 +86,7 @@ for nonGR in nGR:
 			break
 		# Increasing the non-GR value
 		j += 0.01
-	print '%s'%nonGR	
+	
 	# Re-setting the non-GR parameter to zero.
         p[str(nonGR)] = 0
 
@@ -96,6 +100,7 @@ for nonGR in nGR:
 	plt.ylabel('h$_+$(m)', fontsize = 20)
 #	plt.title(('$%s = %.2f, M_1 = 20 M_\odot, M_2 = 30 M_\odot$'%(nonGR,j)), fontsize = 20)	
 	plt.legend(loc = 'best')
+	plt.xlim(-2.5, 0.25)
 	plt.grid()
 	plt.draw()
 	plt.savefig('/home/c1320229/non-GR/%s'%nonGR+'zero_spin.png', bbox = 'tight')

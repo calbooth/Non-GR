@@ -24,6 +24,7 @@ default_args_ngr = (parameters.fd_waveform_params.default_dict() + \
 q = default_args
 q['mass1'] = 20
 q['mass2'] = 30
+q['spin1x'] = 0.0
 q['delta_t'] = 1./4096
 q['f_lower'] = 20
 q['approximant'] = 'IMRPhenomPv2'
@@ -52,6 +53,7 @@ psd = aLIGOZeroDetHighPower(flen, delta_f, f_low)
 #########################################################
 
 p = default_args_ngr
+p['mass1'] = 20
 p['mass2'] = 30
 p['delta_t'] = 1./4096
 p['f_lower'] = 20
@@ -78,7 +80,7 @@ for nonGR in nGR:
 
 		# Looping through masses
 		for j in mass1:
-			p['mass1'] = j			
+			p['spin1x'] = j			
 			
 			# Creating non-GR waveform
         		sp, sc = pycbc.waveform.waveform.get_td_waveform(**p)
@@ -98,12 +100,12 @@ for nonGR in nGR:
 	'''
 	levels=np.array([0.97])
 	x = 0.0
-	y = 20.0
+	y = 0.0
 	
 	fig = plt.figure('%s'%nonGR, figsize = (10.0, 6.25))
 	ax = fig.add_subplot(1,1,1)
 	cont = ax.contourf(ngrparam, mass1, M, 100)
-	ax.set_ylabel('$M_1$', fontsize = 20)
+	ax.set_ylabel('$S_{x1}$', fontsize = 20)
 	ax.set_xlabel('%s'%nonGR, fontsize = 20)
 	#ax.set_title('Match plot of varying %s and $M_1$'%nonGR, fontsize = 20)
 	ax.annotate('$\otimes$', (x, y), fontsize = 15)
@@ -111,7 +113,7 @@ for nonGR in nGR:
 	fig.colorbar(cont, cax = colorbar_ax)
 	con = ax.contour(ngrparam, mass1, M, 1 ,levels=levels)
 	ax.clabel(con, color = 'k')
-	plt.savefig('/home/c1320229/non-GR/%s'%nonGR + 'mass1.png')
+	plt.savefig('/home/c1320229/non-GR/%s'%nonGR + '2Dspin1.png')
 #	plt.show()
 
 	p['%s'%nonGR] = 0.0

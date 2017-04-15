@@ -1,0 +1,11 @@
+XLAL Error - XLALSimIMRPhenomPCalculateModelParametersFromSourceFrame (LALSimIMRPhenomP.c:292): |S1/m1^2| must be <= 1.
+
+XLAL Error - XLALSimIMRPhenomPCalculateModelParametersFromSourceFrame (LALSimIMRPhenomP.c:292): Input domain error
+Traceback (most recent call last):
+  File "/home/c1320229/non-GR/nonGR_m1_match.py", line 86, in <module>
+    sp, sc = pycbc.waveform.waveform.get_td_waveform(**p)
+  File "/home/c1320229/src/pycbc/lib/python2.7/site-packages/PyCBC-54c7a0-py2.7.egg/pycbc/waveform/waveform.py", line 508, in get_td_waveform
+    return wav_gen[input_params['approximant']](**input_params)
+  File "/home/c1320229/src/pycbc/lib/python2.7/site-packages/PyCBC-54c7a0-py2.7.egg/pycbc/waveform/waveform.py", line 222, in _lalsim_td_waveform
+    _lalsim_enum[p['approximant']])
+RuntimeError: Input domain error

@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
-#import matplotlib
+import matplotlib
 
-#matplotlib.use('Agg')
+matplotlib.use('Agg')
 
 import numpy as np
 import pycbc
@@ -62,10 +62,10 @@ p['delta_t'] = 1./4096
 p['f_lower'] = 20
 p['approximant'] = 'IMRPhenomPv2'
 
-#nGR = ['dchi0','dchi1','dchi2','dchi3','dchi4','dchi6',
-#'dalpha2','dalpha3','dalpha4','dbeta2','dbeta3']
+nGR = ['dchi0','dchi1','dchi2','dchi3','dchi4','dchi6',
+'dalpha2','dalpha3','dalpha4','dbeta2','dbeta3']
 
-nGR = ['dchi0']
+#nGR = ['dchi0']
 
 # Looping through the list
 for nonGR in nGR:
@@ -107,4 +107,4 @@ for nonGR in nGR:
 	plt.grid()
 	plt.draw()
 	plt.savefig('/home/c1320229/non-GR/%s'%nonGR+'zero_spin.png', bbox = 'tight')
-	plt.show()
+	#plt.show()

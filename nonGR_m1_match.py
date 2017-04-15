@@ -60,6 +60,8 @@ p['approximant'] = 'IMRPhenomPv2'
 nGR = ['dchi0','dchi1','dchi2','dchi3','dchi4','dchi6',
 'dalpha2','dalpha3','dalpha4','dbeta2','dbeta3'] # hashed out to test one param
 
+#nGR = ['dbeta3']
+
 ngrparam = np.arange(-0.5, 0.5, 0.01) # range of nGR params
 mass1 = np.linspace(15, 45, 100) # Range of masses
 
@@ -98,7 +100,7 @@ for nonGR in nGR:
 	x = 0.0
 	y = 20.0
 	
-	fig = plt.figure('%s'%nonGR)
+	fig = plt.figure('%s'%nonGR, figsize = (10.0, 6.25))
 	ax = fig.add_subplot(1,1,1)
 	cont = ax.contourf(ngrparam, mass1, M, 100)
 	ax.set_ylabel('$M_1$', fontsize = 20)
@@ -109,5 +111,7 @@ for nonGR in nGR:
 	fig.colorbar(cont, cax = colorbar_ax)
 	con = ax.contour(ngrparam, mass1, M, 1 ,levels=levels)
 	ax.clabel(con, color = 'k')
-	plt.savefig('/home/c1320229/non-GR/%s'%nonGR + 'mass1.png', bbox  = 'tight')
-	plt.close()
+	plt.savefig('/home/c1320229/non-GR/%s'%nonGR + 'mass1.png')
+#	plt.show()
+
+	p['%s'%nonGR] = 0.0

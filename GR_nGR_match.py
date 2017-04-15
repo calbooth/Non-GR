@@ -65,9 +65,9 @@ M1 = np.linspace(5, 35, 1000) # The mass array
 pmatch = np.zeros(1000) # Non-GR match array
 qmatch = np.zeros(1000) # GR match array
 
-#val = np.linspace(-0.5, 0.5, 10)
+val = np.linspace(-0.5, 0.5, 20)
 
-val = np.array([0.5])
+#val = np.array([-0.2])
 
 for ii in val:
 	
@@ -103,29 +103,31 @@ for ii in val:
 	# Getting rid of unwanted intersection points
 	x_int = M1[idx]
 	y_int = pmatch[idx]
+	
+	# Plotting every other plot
+	if 10*ii%2 == 0:
 		
-	# Plotting
-	fig = plt.figure()
-	ax = fig.add_subplot(1,1,1)
-	k = ax.plot(M1, pmatch, label = 'Non-GR')
-	l = ax.plot(M1, qmatch, label = 'GR')	
-
-	# Plotting the point with maximum match  where the curves intersect
-	max_y = np.argmax(y_int)
-	y_int = np.array(max(y_int))
-	x_int = np.array(x_int[int(max_y)])	
-
-	m = ax.plot(x_int, y_int, 'ro')
-
-	ax.annotate('%.2f, %.2f'%(x_int, y_int), xy=(x_int, y_int), xytext=(x_int + 0.5, y_int + 0.02), fontsize = 15)
-
-	# Formatting
-	ax.set_xlabel('$M_1(M_{\odot})$', fontsize = 20)
-	ax.set_ylabel('Match', fontsize = 20)
-#	ax.set_title(('Match plot for varying $M_1$'), fontsize = 20)
-	ax.set_xlim(5, 35)
-	plt.legend(loc = 'best')
-	plt.grid()
-	plt.savefig('/home/c1320229/non-GR/intercept_dchi0_' + '%s'%ii + '.png', bbox = 'tight')
-#	plt.show()
-	plt.close()
+		fig = plt.figure(figsize  = (10.0, 6.25))
+		ax = fig.add_subplot(1,1,1)
+		k = ax.plot(M1, pmatch, label = 'Non-GR')
+		l = ax.plot(M1, qmatch, label = 'GR')	
+	
+		# Plotting the point with maximum match  where the curves intersect
+		max_y = np.argmax(y_int)
+		y_int = np.array(max(y_int))
+		x_int = np.array(x_int[int(max_y)])	
+	
+		m = ax.plot(x_int, y_int, 'ro')
+	
+		ax.annotate('%.2f, %.2f'%(x_int, y_int), xy=(x_int, y_int), xytext=(x_int + 0.5, y_int + 0.02), fontsize = 15)
+		
+		# Formatting
+		ax.set_xlabel('$M_1(M_{\odot})$', fontsize = 20)
+		ax.set_ylabel('Match', fontsize = 20)
+	#	ax.set_title(('Match plot for varying $M_1$'), fontsize = 20)
+		ax.set_xlim(5, 35)
+		plt.legend(loc = 'best')
+		plt.grid()
+		plt.savefig('/home/c1320229/non-GR/intercept_dchi0_' + '%s'%ii + '.png')
+	#	plt.show()
+	#	plt.close()

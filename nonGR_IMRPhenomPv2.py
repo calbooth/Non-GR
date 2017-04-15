@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
-import matplotlib
-matplotlib.use('Agg')
+#import matplotlib
+
+#matplotlib.use('Agg')
 
 import numpy as np
 import pycbc
@@ -61,8 +62,10 @@ p['delta_t'] = 1./4096
 p['f_lower'] = 20
 p['approximant'] = 'IMRPhenomPv2'
 
-nGR = ['dchi0','dchi1','dchi2','dchi3','dchi4','dchi6',
-'dalpha2','dalpha3','dalpha4','dbeta2','dbeta3']
+#nGR = ['dchi0','dchi1','dchi2','dchi3','dchi4','dchi6',
+#'dalpha2','dalpha3','dalpha4','dbeta2','dbeta3']
+
+nGR = ['dchi0']
 
 # Looping through the list
 for nonGR in nGR:
@@ -93,15 +96,15 @@ for nonGR in nGR:
 	'''
 	Plotting and saving the waveforms
 	'''
-	plt.figure('%s'%nonGR)
+	plt.figure('%s'%nonGR, figsize = (10.0, 6.25))
 	plt.plot(hp.sample_times, hp, label = 'GR IMRPhenomPv2')
 	plt.plot(sp.sample_times, sp, label = 'Non-GR IMRPhenomPv2')
 	plt.xlabel('Time(s)', fontsize = 20)
 	plt.ylabel('h$_+$(m)', fontsize = 20)
 #	plt.title(('$%s = %.2f, M_1 = 20 M_\odot, M_2 = 30 M_\odot$'%(nonGR,j)), fontsize = 20)	
 	plt.legend(loc = 'best')
-	plt.xlim(-2.5, 0.25)
+	plt.xlim(-2.5, 0.05)
 	plt.grid()
 	plt.draw()
 	plt.savefig('/home/c1320229/non-GR/%s'%nonGR+'zero_spin.png', bbox = 'tight')
-	plt.close()
+	plt.show()

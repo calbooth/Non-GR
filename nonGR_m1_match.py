@@ -67,6 +67,8 @@ nGR = ['dchi0','dchi1','dchi2','dchi3','dchi4','dchi6',
 ngrparam = np.arange(-0.5, 0.5, 0.01) # range of nGR params
 mass1 = np.linspace(15, 45, 100) # Range of masses
 
+#spin1 = np.linspace(-0.5, 0.5, 100)
+
 # First looping through params
 for nonGR in nGR:
 	k = 0 # Initialising x coord to zero
@@ -77,14 +79,18 @@ for nonGR in nGR:
 		# Setting the non-GR parameter to have some value
                 p['%s'%nonGR] = i
 		l = 0 # Initialising y coord to zero
-
+		
+		m_chirp = np.zeros(len(mass1))	
+	
 		# Looping through masses
 		for j in mass1:
-			p['spin1x'] = j			
+			p['mass1'] = j			
 			
 			# Creating non-GR waveform
         		sp, sc = pycbc.waveform.waveform.get_td_waveform(**p)
-
+			
+			m_chirp[l] = ((j*30.0)**(3.0/5.0))/((j + 30.0)**(1.0/5.0))		
+	
      	  		# Resize the waveforms to the same length
               		sp.resize(tlen)
 	
@@ -102,18 +108,34 @@ for nonGR in nGR:
 	x = 0.0
 	y = 0.0
 	
-	fig = plt.figure('%s'%nonGR, figsize = (10.0, 6.25))
-	ax = fig.add_subplot(1,1,1)
-	cont = ax.contourf(ngrparam, mass1, M, 100)
-	ax.set_ylabel('$S_{x1}$', fontsize = 20)
-	ax.set_xlabel('%s'%nonGR, fontsize = 20)
+	fig1 = plt.figure('%s'%nonGR, figsize = (20.0, 13.5))
+	ax1 = fig1.add_subplot(1,1,1)
+	cont = ax1.contourf(ngrparam, mass1, M, 100)
+	ax1.set_ylabel('$M_{1}$', fontsize = 20)
+	ax1.set_xlabel('%s'%nonGR, fontsize = 20)
 	#ax.set_title('Match plot of varying %s and $M_1$'%nonGR, fontsize = 20)
-	ax.annotate('$\otimes$', (x, y), fontsize = 15)
-	colorbar_ax = fig.add_axes([0.905, 0.11, 0.05, 0.77])
-	fig.colorbar(cont, cax = colorbar_ax)
-	con = ax.contour(ngrparam, mass1, M, 1 ,levels=levels)
-	ax.clabel(con, color = 'k')
-	plt.savefig('/home/c1320229/non-GR/%s'%nonGR + '2Dspin1.png')
+	ax1.annotate('$\otimes$', (x, y), fontsize = 15)
+	colorbar_ax = fig1.add_axes([0.905, 0.11, 0.05, 0.77])
+	fig1.colorbar(cont, cax = colorbar_ax)
+	con = ax1.contour(ngrparam, mass1, M, 1 ,levels=levels)
+	ax1.clabel(con, color = 'k')
+	plt.savefig('/home/c1320229/non-GR/%s'%nonGR + 'zerospin.png')
 #	plt.show()
 
+	
+
+	fig2 = plt.figure('%s'%nonGR + 'm_chirp', figsize = (20.0, 13.5))
+        ax2 = fig2.add_subplot(1,1,1)
+        cont = ax2.contourf(ngrparam, m_chirp, M, 100)
+        ax2.set_ylabel('$M_{chirp}$', fontsize = 20)
+        ax2.set_xlabel('%s'%nonGR, fontsize = 20)
+        #ax.set_title('Match plot of varying %s and $M_1$'%nonGR, fontsize = 20)
+        ax2.annotate('$\otimes$', (x, y), fontsize = 15)
+        colorbar_ax = fig2.add_axes([0.905, 0.11, 0.05, 0.77])
+        fig2.colorbar(cont, cax = colorbar_ax)
+        con = ax2.contour(ngrparam, m_chirp, M, 1 ,levels=levels)
+        ax2.clabel(con, color = 'k')
+        plt.savefig('/home/c1320229/non-GR/%s'%nonGR + '2Dm_chirp.png')
+#	plt.show()	
+	
 	p['%s'%nonGR] = 0.0

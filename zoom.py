@@ -60,7 +60,7 @@ p['delta_t'] = 1./4096
 p['f_lower'] = 20
 p['approximant'] = 'IMRPhenomPv2'
 
-nGR = ['dbeta3']
+nGR = ['dalpha4']
 
 # Looping through the list
 for nonGR in nGR:
@@ -100,7 +100,7 @@ for nonGR in nGR:
         plt.ylabel('h$_+$(m)', fontsize = 20)
 #       plt.title(('$%s = %.2f, M_1 = 20 M_\odot, M_2 = 30 M_\odot$'%(nonGR,j)), fontsize = 20) 
         plt.legend(loc = 'best')
-        plt.xlim(-0.25, 0.02)
+        plt.xlim(-0.1, 0.02)
         plt.grid()
         plt.draw()
         plt.savefig('/home/c1320229/non-GR/%s'%nonGR+'zoom.png', bbox = 'tight')

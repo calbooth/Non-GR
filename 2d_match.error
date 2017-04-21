@@ -1,2 +1,4 @@
-/home/c1320229/src/pycbc/lib/python2.7/site-packages/matplotlib/pyplot.py:524: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`).
-  max_open_warning, RuntimeWarning)
+Traceback (most recent call last):
+  File "/home/c1320229/non-GR/nonGR_m1_match.py", line 8, in <module>
+    import pycbc
+ImportError: No module named pycbc

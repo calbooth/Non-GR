@@ -59,15 +59,15 @@ p['delta_t'] = 1./4096
 p['f_lower'] = 20
 p['approximant'] = 'IMRPhenomPv2'
 
-nGR = ['dchi0','dchi1','dchi2','dchi3','dchi4','dchi6',
-'dalpha2','dalpha3','dalpha4','dbeta2','dbeta3'] # hashed out to test one param
+#nGR = ['dchi0','dchi1','dchi2','dchi3','dchi4','dchi6',
+nGR = ['dalpha2','dalpha3','dalpha4','dbeta2','dbeta3'] # hashed out to test one param
 
 #nGR = ['dbeta3']
 
-ngrparam = np.arange(-0.5, 0.5, 0.01) # range of nGR params
-mass1 = np.linspace(15, 45, 100) # Range of masses
+ngrparam = np.arange(-4, 4, 0.01) # range of nGR params
+#mass1 = np.linspace(15, 45, 100) # Range of masses
 
-#spin1 = np.linspace(-0.5, 0.5, 100)
+spin1 = np.linspace(-0.5, 0.5, 100)
 
 # First looping through params
 for nonGR in nGR:
@@ -83,8 +83,8 @@ for nonGR in nGR:
 		m_chirp = np.zeros(len(mass1))	
 	
 		# Looping through masses
-		for j in mass1:
-			p['mass1'] = j			
+		for j in spin1:
+			p['spin1x'] = j			
 			
 			# Creating non-GR waveform
         		sp, sc = pycbc.waveform.waveform.get_td_waveform(**p)
@@ -110,19 +110,19 @@ for nonGR in nGR:
 	
 	fig1 = plt.figure('%s'%nonGR, figsize = (20.0, 13.5))
 	ax1 = fig1.add_subplot(1,1,1)
-	cont = ax1.contourf(ngrparam, mass1, M, 100)
-	ax1.set_ylabel('$M_{1}$', fontsize = 20)
+	cont = ax1.contourf(ngrparam, spin1, M, 100)
+	ax1.set_ylabel('$S_{1x}$', fontsize = 20)
 	ax1.set_xlabel('%s'%nonGR, fontsize = 20)
 	#ax.set_title('Match plot of varying %s and $M_1$'%nonGR, fontsize = 20)
 	ax1.annotate('$\otimes$', (x, y), fontsize = 15)
 	colorbar_ax = fig1.add_axes([0.905, 0.11, 0.05, 0.77])
 	fig1.colorbar(cont, cax = colorbar_ax)
-	con = ax1.contour(ngrparam, mass1, M, 1 ,levels=levels)
+	con = ax1.contour(ngrparam, spin1, M, 1 ,levels=levels)
 	ax1.clabel(con, color = 'k')
-	plt.savefig('/home/c1320229/non-GR/%s'%nonGR + 'zerospin.png')
+	plt.savefig('/home/c1320229/non-GR/%s'%nonGR + 'extended_spin.png')
 #	plt.show()
 
-	
+	'''	
 
 	fig2 = plt.figure('%s'%nonGR + 'm_chirp', figsize = (20.0, 13.5))
         ax2 = fig2.add_subplot(1,1,1)
@@ -137,5 +137,5 @@ for nonGR in nGR:
         ax2.clabel(con, color = 'k')
         plt.savefig('/home/c1320229/non-GR/%s'%nonGR + '2Dm_chirp.png')
 #	plt.show()	
-	
+	'''	
 	p['%s'%nonGR] = 0.0

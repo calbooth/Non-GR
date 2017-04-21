@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "/home/c1320229/non-GR/nonGR_m1_match.py", line 83, in <module>
-    m_chirp = np.zeros(len(mass1))	
-NameError: name 'mass1' is not defined

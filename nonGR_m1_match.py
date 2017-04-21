@@ -80,7 +80,7 @@ for nonGR in nGR:
                 p['%s'%nonGR] = i
 		l = 0 # Initialising y coord to zero
 		
-		m_chirp = np.zeros(len(mass1))	
+	#	m_chirp = np.zeros(len(mass1))	
 	
 		# Looping through masses
 		for j in spin1:
@@ -89,7 +89,7 @@ for nonGR in nGR:
 			# Creating non-GR waveform
         		sp, sc = pycbc.waveform.waveform.get_td_waveform(**p)
 			
-			m_chirp[l] = ((j*30.0)**(3.0/5.0))/((j + 30.0)**(1.0/5.0))		
+		#	m_chirp[l] = ((j*30.0)**(3.0/5.0))/((j + 30.0)**(1.0/5.0))		
 	
      	  		# Resize the waveforms to the same length
               		sp.resize(tlen)

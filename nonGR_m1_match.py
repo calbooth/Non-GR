@@ -60,9 +60,9 @@ p['f_lower'] = 20
 p['approximant'] = 'IMRPhenomPv2'
 
 #nGR = ['dchi0','dchi1','dchi2','dchi3','dchi4','dchi6',
-nGR = ['dalpha2','dalpha3','dalpha4','dbeta2','dbeta3'] # hashed out to test one param
+#nGR = ['dalpha2','dalpha3','dalpha4','dbeta2','dbeta3'] # hashed out to test one param
 
-#nGR = ['dbeta3']
+nGR = ['dbeta3']
 
 ngrparam = np.linspace(-4, 4, 100) # range of nGR params
 #mass1 = np.linspace(15, 45, 100) # Range of masses
@@ -107,6 +107,17 @@ for nonGR in nGR:
 	levels=np.array([0.97])
 	x = 0.0
 	y = 0.0
+	'''	
+	# Match distribution
+	plt.figure()
+	plt.plot(ngrparam, M[0,:], label = 'Match distribution')
+	plt.xlabel('$dbeta_3$', fontsize = 20)
+	plt.ylabel('Match', fontsize = 20)
+	plt.legend(loc = 'best')
+	plt.grid()
+	plt.savefig('/home/c1320229/non-GR/dbeta3_match_distribution.png')	
+	plt.show()
+	'''	
 	
 	fig1 = plt.figure('%s'%nonGR, figsize = (20.0, 13.5))
 	ax1 = fig1.add_subplot(1,1,1)
@@ -122,7 +133,7 @@ for nonGR in nGR:
 	plt.savefig('/home/c1320229/non-GR/%s'%nonGR + 'extended_spin.png')
 #	plt.show()
 
-	'''	
+		
 
 	fig2 = plt.figure('%s'%nonGR + 'm_chirp', figsize = (20.0, 13.5))
         ax2 = fig2.add_subplot(1,1,1)
@@ -137,5 +148,5 @@ for nonGR in nGR:
         ax2.clabel(con, color = 'k')
         plt.savefig('/home/c1320229/non-GR/%s'%nonGR + 'extended_m_chirp.png')
 #	plt.show()	
-	'''
+	
 	p['%s'%nonGR] = 0.0

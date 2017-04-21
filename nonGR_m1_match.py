@@ -64,7 +64,7 @@ nGR = ['dalpha2','dalpha3','dalpha4','dbeta2','dbeta3'] # hashed out to test one
 
 #nGR = ['dbeta3']
 
-ngrparam = np.arange(-4, 4, 0.01) # range of nGR params
+ngrparam = np.linspace(-4, 4, 100) # range of nGR params
 #mass1 = np.linspace(15, 45, 100) # Range of masses
 
 spin1 = np.linspace(-0.5, 0.5, 100)
@@ -111,8 +111,8 @@ for nonGR in nGR:
 	fig1 = plt.figure('%s'%nonGR, figsize = (20.0, 13.5))
 	ax1 = fig1.add_subplot(1,1,1)
 	cont = ax1.contourf(ngrparam, spin1, M, 100)
-	ax1.set_ylabel('$S_{1x}$', fontsize = 20)
-	ax1.set_xlabel('%s'%nonGR, fontsize = 20)
+	#ax1.set_ylabel('$S_{1x}$', fontsize = 20)
+	#ax1.set_xlabel('%s'%nonGR, fontsize = 20)
 	#ax.set_title('Match plot of varying %s and $M_1$'%nonGR, fontsize = 20)
 	ax1.annotate('$\otimes$', (x, y), fontsize = 15)
 	colorbar_ax = fig1.add_axes([0.905, 0.11, 0.05, 0.77])
@@ -135,7 +135,7 @@ for nonGR in nGR:
         fig2.colorbar(cont, cax = colorbar_ax)
         con = ax2.contour(ngrparam, m_chirp, M, 1 ,levels=levels)
         ax2.clabel(con, color = 'k')
-        plt.savefig('/home/c1320229/non-GR/%s'%nonGR + '2Dm_chirp.png')
+        plt.savefig('/home/c1320229/non-GR/%s'%nonGR + 'extended_m_chirp.png')
 #	plt.show()	
-	'''	
+	'''
 	p['%s'%nonGR] = 0.0

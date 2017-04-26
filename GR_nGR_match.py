@@ -73,7 +73,7 @@ val = np.linspace(-0.5, 0.5, 20)
 
 for ii in val:
 	
-	p['dchi0'] = ii # Non-GR parameter
+	p['dalpha3'] = ii # Non-GR parameter
 	j = 0 # Counting parameter
 	
 	for i in S1:
@@ -136,6 +136,6 @@ for ii in val:
 #	ax.set_xlim(5, 35)
 	plt.legend(loc = 'best')
 	plt.grid()
-	plt.savefig('/home/c1320229/non-GR/intercept_dchi0_' + '%s'%ii + 'spin.png')
+	plt.savefig('/home/c1320229/non-GR/intercept_dalpha3_' + '%s'%ii + 'spin.png')
 #	plt.show()
 #	plt.close()

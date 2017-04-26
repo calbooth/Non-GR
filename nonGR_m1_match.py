@@ -92,9 +92,9 @@ p['f_lower'] = 20
 p['approximant'] = 'IMRPhenomPv2'
 
 #nGR = ['dchi0','dchi1','dchi2','dchi3','dchi4','dchi6',
-#nGR = ['dalpha2','dalpha3','dalpha4','dbeta2','dbeta3'] # hashed out to test one param
+nGR = ['dalpha2','dalpha3','dalpha4','dbeta2','dbeta3'] # hashed out to test one param
 
-nGR = ['dbeta3']
+#nGR = ['dbeta3']
 
 ngrparam = np.linspace(-4, 4, 100) # range of nGR params
 #mass1 = np.linspace(15, 45, 100) # Range of masses

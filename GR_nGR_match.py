@@ -56,12 +56,14 @@ psd = aLIGOZeroDetHighPower(flen, delta_f, f_low) # Creating PSD
 #########################################################
 
 p = default_args_nGR
+p['mass1'] = 20
 p['mass2'] = 30 
 p['delta_t'] = 1./4096
 p['f_lower'] = 20
 p['approximant'] = 'IMRPhenomPv2'
 
-M1 = np.linspace(5, 35, 1000) # The mass array
+#M1 = np.linspace(5, 35, 1000) # The mass array
+S1 = np.linspace(-0.5, 0.5, 1000)
 pmatch = np.zeros(1000) # Non-GR match array
 qmatch = np.zeros(1000) # GR match array
 
@@ -74,10 +76,10 @@ for ii in val:
 	p['dchi0'] = ii # Non-GR parameter
 	j = 0 # Counting parameter
 	
-	for i in M1:
+	for i in S1:
 
-		p['mass1'] = i
-		q['mass1'] = i	
+		p['spin1x'] = i
+		q['spin1x'] = i	
 
         	pp, pc = pycbc.waveform.waveform.get_td_waveform(**p)
         	qp, qc = pycbc.waveform.waveform.get_td_waveform(**q)
@@ -101,33 +103,39 @@ for ii in val:
 	idx = np.argwhere(np.diff(np.sign(pmatch - qmatch)) != 0).reshape(-1) + 0
 		
 	# Getting rid of unwanted intersection points
-	x_int = M1[idx]
+	x_int = S1[idx]
 	y_int = pmatch[idx]
-	
-	# Plotting every other plot
-	if 10*ii%2 == 0:
+
 		
-		fig = plt.figure(figsize  = (10.0, 6.25))
-		ax = fig.add_subplot(1,1,1)
-		k = ax.plot(M1, pmatch, label = 'Non-GR')
-		l = ax.plot(M1, qmatch, label = 'GR')	
-	
-		# Plotting the point with maximum match  where the curves intersect
+	fig = plt.figure(figsize  = (10.0, 6.25))
+	ax = fig.add_subplot(1,1,1)
+	k = ax.plot(S1, pmatch, label = 'Non-GR')
+	l = ax.plot(S1, qmatch, label = 'GR')	
+
+	# Plotting the point with maximum match  where the curves intersect
+#	max_y = np.argmax(y_int)
+#	y_max = np.array(max_y)
+#	y_index = np.where(y_int == y_int.max())
+#	x_max = np.array(x_int[int(y_index)])	
+
+	if len(y_int) > 1:
 		max_y = np.argmax(y_int)
 		y_int = np.array(max(y_int))
-		x_int = np.array(x_int[int(max_y)])	
+		x_int = np.array(x_int[int(max_y)]) 
 	
 		m = ax.plot(x_int, y_int, 'ro')
 	
 		ax.annotate('%.2f, %.2f'%(x_int, y_int), xy=(x_int, y_int), xytext=(x_int + 0.5, y_int + 0.02), fontsize = 15)
-		
-		# Formatting
-		ax.set_xlabel('$M_1(M_{\odot})$', fontsize = 20)
-		ax.set_ylabel('Match', fontsize = 20)
-	#	ax.set_title(('Match plot for varying $M_1$'), fontsize = 20)
-		ax.set_xlim(5, 35)
-		plt.legend(loc = 'best')
-		plt.grid()
-		plt.savefig('/home/c1320229/non-GR/intercept_dchi0_' + '%s'%ii + '.png')
-	#	plt.show()
-	#	plt.close()
+			
+	# Formatting
+	ax.set_xlabel('$S_{1x}$', fontsize = 20)
+	ax.set_ylabel('Match', fontsize = 20)
+#	ax.set_title(('Match plot for varying $M_1$'), fontsize = 20)
+	ax.xaxis.set_tick_params(labelsize=15)
+	ax.yaxis.set_tick_params(labelsize=15)
+#	ax.set_xlim(5, 35)
+	plt.legend(loc = 'best')
+	plt.grid()
+	plt.savefig('/home/c1320229/non-GR/intercept_dchi0_' + '%s'%ii + 'spin.png')
+#	plt.show()
+#	plt.close()

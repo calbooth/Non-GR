@@ -1,0 +1,12 @@
+#!/usr/bin/env python
+
+executable = /home/c1320229/non-GR/match_distribution.py
+universe       = vanilla
+getenv         = True
+output         = match_dis.out
+error          = match_dis.error
+log            = match_dis.log
+request_cpus = 12
+accounting_group = aluk.dev.o2.cbc.explore.test
+queue
+

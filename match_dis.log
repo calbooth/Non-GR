@@ -1,0 +1,60 @@
+000 (7089126.000.000) 04/21 18:16:18 Job submitted from host: <172.21.0.15:36820?addrs=172.21.0.15-36820>
+...
+000 (7089127.000.000) 04/21 18:23:01 Job submitted from host: <172.21.0.15:36820?addrs=172.21.0.15-36820>
+...
+001 (7089126.000.000) 04/22 01:11:47 Job executing on host: <172.20.1.27:38904?addrs=172.20.1.27-38904>
+...
+007 (7089126.000.000) 04/22 01:11:47 Shadow exception!
+	Error from slot1@48462@raven326.bullx: Failed to execute '/home/c1320229/non-GR/match_distribution.py': (errno=13: 'Permission denied')
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+...
+012 (7089126.000.000) 04/22 01:11:47 Job was held.
+	Error from slot1@48462@raven326.bullx: Failed to execute '/home/c1320229/non-GR/match_distribution.py': (errno=13: 'Permission denied')
+	Code 6 Subcode 13
+...
+001 (7089127.000.000) 04/22 01:11:48 Job executing on host: <172.20.1.27:38904?addrs=172.20.1.27-38904>
+...
+007 (7089127.000.000) 04/22 01:11:48 Shadow exception!
+	Error from slot1@48462@raven326.bullx: Failed to execute '/home/c1320229/non-GR/match_distribution.py': (errno=13: 'Permission denied')
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+...
+012 (7089127.000.000) 04/22 01:11:48 Job was held.
+	Error from slot1@48462@raven326.bullx: Failed to execute '/home/c1320229/non-GR/match_distribution.py': (errno=13: 'Permission denied')
+	Code 6 Subcode 13
+...
+013 (7089126.000.000) 04/24 13:01:21 Job was released.
+	via condor_release (by user condor)
+...
+013 (7089127.000.000) 04/24 13:01:21 Job was released.
+	via condor_release (by user condor)
+...
+001 (7089126.000.000) 04/24 13:01:36 Job executing on host: <172.20.1.46:42121?addrs=172.20.1.46-42121>
+...
+001 (7089127.000.000) 04/24 13:01:36 Job executing on host: <172.20.1.28:56672?addrs=172.20.1.28-56672>
+...
+007 (7089126.000.000) 04/24 13:01:36 Shadow exception!
+	Error from slot1@47137@raven345.bullx: Failed to execute '/home/c1320229/non-GR/match_distribution.py': (errno=13: 'Permission denied')
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+...
+007 (7089127.000.000) 04/24 13:01:36 Shadow exception!
+	Error from slot1@37661@raven327.bullx: Failed to execute '/home/c1320229/non-GR/match_distribution.py': (errno=13: 'Permission denied')
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+...
+012 (7089126.000.000) 04/24 13:01:36 Job was held.
+	Error from slot1@47137@raven345.bullx: Failed to execute '/home/c1320229/non-GR/match_distribution.py': (errno=13: 'Permission denied')
+	Code 6 Subcode 13
+...
+012 (7089127.000.000) 04/24 13:01:36 Job was held.
+	Error from slot1@37661@raven327.bullx: Failed to execute '/home/c1320229/non-GR/match_distribution.py': (errno=13: 'Permission denied')
+	Code 6 Subcode 13
+...
+009 (7089126.000.000) 04/26 09:24:08 Job was aborted by the user.
+	via condor_rm (by user c1320229)
+...
+009 (7089127.000.000) 04/26 09:24:08 Job was aborted by the user.
+	via condor_rm (by user c1320229)
+...

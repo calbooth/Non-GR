@@ -14,6 +14,38 @@ from pycbc.psd import aLIGOZeroDetHighPower
 import matplotlib.pyplot as plt
 import math
 
+def max_2Dx(f):
+	i = 0
+	a = np.zeros(len(f[:,0]))
+	while i < len(f[:,0]):
+		a[i] = np.argmax(f[:,i])
+	b = np.argmax(a)
+	return b
+
+def max_2Dy(f):
+        i = 0
+        a = np.zeros(len(f[0,:]))
+        while i < len(f[0,:]):
+                a[i] = np.argmax(f[i,:])             
+        b = np.argmax(a)
+        return b					
+
+def min_2Dx(f):
+        i = 0
+        a = np.zeros(len(f[:,0]))
+        while i < len(f[:,0]):
+                a[i] = np.argmin(f[:,i])             
+        b = np.argmin(a)
+        return b
+
+def max_2Dy(f):
+        i = 0
+        a = np.zeros(len(f[0,:]))
+        while i < len(f[0,:]):
+                a[i] = np.argmin(f[i,:])
+        b = np.argmin(a)
+        return b
+
 # get the default args:
 default_args = (parameters.fd_waveform_params.default_dict() + \
     parameters.td_waveform_params).default_dict()
@@ -105,8 +137,9 @@ for nonGR in nGR:
 	Plotting and saving the result
 	'''
 	levels=np.array([0.97])
-	x = 0.0
-	y = 0.0
+	spin_0 = 0.0
+	nongr_0 = 0.0
+	mass_0  = ((20.0*30.0)**(3.0/5.0))/((20.0 + 30.0)**(1.0/5.0)) 
 	'''	
 	# Match distribution
 	plt.figure()
@@ -118,35 +151,41 @@ for nonGR in nGR:
 	plt.savefig('/home/c1320229/non-GR/dbeta3_match_distribution.png')	
 	plt.show()
 	'''	
-	
+
 	fig1 = plt.figure('%s'%nonGR, figsize = (20.0, 13.5))
 	ax1 = fig1.add_subplot(1,1,1)
 	cont = ax1.contourf(ngrparam, spin1, M, 100)
 	#ax1.set_ylabel('$S_{1x}$', fontsize = 20)
 	#ax1.set_xlabel('%s'%nonGR, fontsize = 20)
 	#ax.set_title('Match plot of varying %s and $M_1$'%nonGR, fontsize = 20)
-	ax1.annotate('$\otimes$', (x, y), fontsize = 15)
+	ax1.annotate('$\otimes$', (nongr_0, spin_0), fontsize = 15)
 	colorbar_ax = fig1.add_axes([0.905, 0.11, 0.05, 0.77])
 	fig1.colorbar(cont, cax = colorbar_ax)
 	con = ax1.contour(ngrparam, spin1, M, 1 ,levels=levels)
+	'''
+	ax1.axvline(max_2Dx(con), linewidth = 2, linestyle = '--', color = 'k')
+        ax1.axvline(min_2Dx(con), linewidth = 2, linestyle = '--', color = 'k')
+        ax1.axhline(max_2Dy(con), linewidth = 2, linestyle = '--', color = 'k')
+        ax1.axhline(min_2Dy(con), linewidth = 2, linestyle = '--', color = 'k')
+	'''
+	ax1.xaxis.set_tick_params(labelsize=20)
+	ax1.yaxis.set_tick_params(labelsize=20)
 	ax1.clabel(con, color = 'k')
-	plt.savefig('/home/c1320229/non-GR/%s'%nonGR + 'extended_spin.png')
+	plt.savefig('/home/c1320229/non-GR/%s'%nonGR + 'spin1.png')
 #	plt.show()
-
-		
-
+	'''
 	fig2 = plt.figure('%s'%nonGR + 'm_chirp', figsize = (20.0, 13.5))
         ax2 = fig2.add_subplot(1,1,1)
         cont = ax2.contourf(ngrparam, m_chirp, M, 100)
         ax2.set_ylabel('$M_{chirp}$', fontsize = 20)
         ax2.set_xlabel('%s'%nonGR, fontsize = 20)
         #ax.set_title('Match plot of varying %s and $M_1$'%nonGR, fontsize = 20)
-        ax2.annotate('$\otimes$', (x, y), fontsize = 15)
+        ax2.annotate('$\otimes$', (nongr_0, mass_0), fontsize = 15)
         colorbar_ax = fig2.add_axes([0.905, 0.11, 0.05, 0.77])
         fig2.colorbar(cont, cax = colorbar_ax)
         con = ax2.contour(ngrparam, m_chirp, M, 1 ,levels=levels)
         ax2.clabel(con, color = 'k')
         plt.savefig('/home/c1320229/non-GR/%s'%nonGR + 'extended_m_chirp.png')
 #	plt.show()	
-	
+	'''	
 	p['%s'%nonGR] = 0.0

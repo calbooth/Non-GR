@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "/tmp/Condor-execute.172.20.1.27-48462/dir_16071/condor_exec.exe", line 8, in <module>
-    import pycbc
-ImportError: No module named pycbc

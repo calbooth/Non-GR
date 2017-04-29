@@ -86,7 +86,7 @@ for nonGR in nGR:
 
 		# If the match is less than 0.97 then break from the loop
 		if m <= 0.97:
-			print j
+		#	print j
 			break
 		# Increasing the non-GR value
 		j += 0.01
@@ -94,19 +94,20 @@ for nonGR in nGR:
 	# Re-setting the non-GR parameter to zero.
         p[str(nonGR)] = 0
 
-	'''
-	Plotting and saving the waveforms
+	
+	# Plotting and saving the waveforms
 	
 	plt.figure('%s'%nonGR, figsize = (10.0, 6.25))
 	plt.plot(hp.sample_times, hp, label = 'GR IMRPhenomPv2')
 	plt.plot(sp.sample_times, sp, label = 'Non-GR IMRPhenomPv2')
-	plt.xlabel('Time(s)', fontsize = 20)
-	plt.ylabel('h$_+$(m)', fontsize = 20)
+	plt.xlabel('Time(s)', fontsize = 25)
+	plt.ylabel('h$_+$(m)', fontsize = 25)
 #	plt.title(('$%s = %.2f, M_1 = 20 M_\odot, M_2 = 30 M_\odot$'%(nonGR,j)), fontsize = 20)	
-	plt.legend(loc = 'best')
+	plt.legend(loc = 'best', fontsize = 20)
 	plt.xlim(-2.5, 0.05)
+	plt.xticks(fontsize = 20)
+	plt.yticks(fontsize = 20)
 	plt.grid()
 	plt.draw()
 	plt.savefig('/home/c1320229/non-GR/%s'%nonGR+'zero_spin.png', bbox = 'tight')
 	#plt.show()
-	'''

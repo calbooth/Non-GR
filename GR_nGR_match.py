@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
-import matplotlib
+#import matplotlib
 
-matplotlib.use('Agg')
+#matplotlib.use('Agg')
 
 import numpy as np
 import pycbc
@@ -76,6 +76,8 @@ for ii in val:
 	p['dalpha3'] = ii # Non-GR parameter
 	j = 0 # Counting parameter
 	
+#	m_chirp = np.zeros(int(len(pmatch)))
+	
 	for i in S1:
 
 		p['spin1x'] = i
@@ -98,6 +100,8 @@ for ii in val:
 		
 		# Increasing counting parameter
 		j += 1
+	
+	#	m_chirp[j] = ((i*30.0)**(3.0/5.0))/((i + 30.0)**(1.0/5.0))	
 	
 	# Plotting the points where the curves intersect
 	idx = np.argwhere(np.diff(np.sign(pmatch - qmatch)) != 0).reshape(-1) + 0
@@ -124,18 +128,28 @@ for ii in val:
 		x_int = np.array(x_int[int(max_y)]) 
 	
 		m = ax.plot(x_int, y_int, 'ro')
+
+		ax.annotate('%.2f, %.2f'%(x_int, y_int), xy=(x_int, y_int), xytext=(x_int + 0.05, y_int + 0.02), fontsize = 15)
+#		ax.annotate('%.2f, %.2f'%(0.5 - x_int, y_int), xy=(0.5 - x_int, y_int), xytext= (0.45 - x_int, y_int + 0.02), fontsize = 15) 
+
+	index = np.where(pmatch == pmatch.max())
+	x_max = S1[int(index[0])]
+	y_max = pmatch[int(index[0])]
 	
-		ax.annotate('%.2f, %.2f'%(x_int, y_int), xy=(x_int, y_int), xytext=(x_int + 0.5, y_int + 0.02), fontsize = 15)
-			
+        ax.annotate('%.2f, %.2f'%(x_max, y_max), xy=(x_max, y_max), xytext=(x_max + 0.05, y_int + 0.02), fontsize = 15)
+
 	# Formatting
 	ax.set_xlabel('$S_{1x}$', fontsize = 20)
 	ax.set_ylabel('Match', fontsize = 20)
 #	ax.set_title(('Match plot for varying $M_1$'), fontsize = 20)
 	ax.xaxis.set_tick_params(labelsize=15)
 	ax.yaxis.set_tick_params(labelsize=15)
+	ax.axvline(x_max, linestyle = '--', color = 'k')
+#	ax.axvline(0.5 - x_max, linestyle = '--', color = 'k')
+	ax.axhline(y_max, linestyle = '--', color = 'k')
 #	ax.set_xlim(5, 35)
 	plt.legend(loc = 'best')
 	plt.grid()
 	plt.savefig('/home/c1320229/non-GR/intercept_dalpha3_' + '%s'%ii + 'spin.png')
-#	plt.show()
+	plt.show()
 #	plt.close()

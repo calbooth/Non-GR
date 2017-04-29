@@ -158,10 +158,10 @@ for nonGR in nGR:
 	#ax1.set_ylabel('$S_{1x}$', fontsize = 20)
 	#ax1.set_xlabel('%s'%nonGR, fontsize = 20)
 	#ax.set_title('Match plot of varying %s and $M_1$'%nonGR, fontsize = 20)
-	ax1.annotate('$\otimes$', (nongr_0, spin_0), fontsize = 15)
+	ax1.annotate('$\otimes$', (nongr_0, spin_0), fontsize = 22)
 	colorbar_ax = fig1.add_axes([0.905, 0.11, 0.05, 0.77])
 	cbar = fig1.colorbar(cont, cax = colorbar_ax, format = '%.3f')
-	cbar.ax.tick_params(labelsize = 15)
+	cbar.ax.tick_params(labelsize = 17)
 	con = ax1.contour(ngrparam, spin1, M, 1 ,levels=levels)
 	'''
 	ax1.axvline(max_2Dx(con), linewidth = 2, linestyle = '--', color = 'k')

@@ -96,7 +96,7 @@ nGR = ['dalpha2','dalpha3','dalpha4','dbeta2','dbeta3'] # hashed out to test one
 
 #nGR = ['dbeta3']
 
-ngrparam = np.linspace(-4, 4, 100) # range of nGR params
+ngrparam = np.linspace(-0.5, 0.5, 100) # range of nGR params
 #mass1 = np.linspace(15, 45, 100) # Range of masses
 
 spin1 = np.linspace(-0.5, 0.5, 100)
@@ -160,7 +160,7 @@ for nonGR in nGR:
 	#ax.set_title('Match plot of varying %s and $M_1$'%nonGR, fontsize = 20)
 	ax1.annotate('$\otimes$', (nongr_0, spin_0), fontsize = 15)
 	colorbar_ax = fig1.add_axes([0.905, 0.11, 0.05, 0.77])
-	cbar = fig1.colorbar(cont, cax = colorbar_ax)
+	cbar = fig1.colorbar(cont, cax = colorbar_ax, format = '%.3f')
 	cbar.ax.tick_params(labelsize = 15)
 	con = ax1.contour(ngrparam, spin1, M, 1 ,levels=levels)
 	'''

@@ -22,7 +22,7 @@ hp_4, hc_4 = get_td_waveform(approximant = approximant, mass1 = 15, mass2 = 30,
 hp_5, hc_5 = get_td_waveform(approximant = approximant, mass1 = 5, mass2 = 30,
                                 delta_t = dt, f_lower = f_low)
 
-
+'''
 plt.figure()
 plt.plot(hp_5.sample_times, hp_5, label = 'Mass ratio = 6')
 plt.xlabel('Time(s)', fontsize = 20)
@@ -67,3 +67,5 @@ plt.grid()
 plt.legend(loc = 'best')
 plt.savefig('mass_ratio_2_misalligned_spin.png')
 #plt.show() 
+'''
+print max(hp_1), max(hp_2), max(hp_3), max(hp_4), max(hp_5)

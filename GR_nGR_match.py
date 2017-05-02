@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
-#import matplotlib
+import matplotlib
 
-#matplotlib.use('Agg')
+matplotlib.use('Agg')
 
 import numpy as np
 import pycbc
@@ -62,8 +62,8 @@ p['delta_t'] = 1./4096
 p['f_lower'] = 20
 p['approximant'] = 'IMRPhenomPv2'
 
-#M1 = np.linspace(5, 35, 1000) # The mass array
-S1 = np.linspace(-0.5, 0.5, 1000)
+M1 = np.linspace(5, 35, 1000) # The mass array
+#S1 = np.linspace(-0.5, 0.5, 1000)
 pmatch = np.zeros(1000) # Non-GR match array
 qmatch = np.zeros(1000) # GR match array
 
@@ -73,15 +73,15 @@ val = np.linspace(-0.5, 0.5, 20)
 
 for ii in val:
 	
-	p['dalpha3'] = ii # Non-GR parameter
+	p['dchi0'] = ii # Non-GR parameter
 	j = 0 # Counting parameter
 	
-#	m_chirp = np.zeros(int(len(pmatch)))
+	m_chirp = np.zeros(1000)	
 	
-	for i in S1:
+	for i in M1:
 
-		p['spin1x'] = i
-		q['spin1x'] = i	
+		p['mass1'] = i
+		q['mass1'] = i	
 
         	pp, pc = pycbc.waveform.waveform.get_td_waveform(**p)
         	qp, qc = pycbc.waveform.waveform.get_td_waveform(**q)
@@ -101,20 +101,20 @@ for ii in val:
 		# Increasing counting parameter
 		j += 1
 	
-	#	m_chirp[j] = ((i*30.0)**(3.0/5.0))/((i + 30.0)**(1.0/5.0))	
+		m_chirp[j-1] = ((i*30.0)**(3.0/5.0))/((i + 30.0)**(1.0/5.0))	
 	
 	# Plotting the points where the curves intersect
 	idx = np.argwhere(np.diff(np.sign(pmatch - qmatch)) != 0).reshape(-1) + 0
 		
 	# Getting rid of unwanted intersection points
-	x_int = S1[idx]
+	x_int = m_chirp[idx]
 	y_int = pmatch[idx]
 
 		
 	fig = plt.figure(figsize  = (10.0, 6.25))
 	ax = fig.add_subplot(1,1,1)
-	k = ax.plot(S1, pmatch, label = 'Non-GR')
-	l = ax.plot(S1, qmatch, label = 'GR')	
+	k = ax.plot(m_chirp, pmatch, label = 'Non-GR')
+	l = ax.plot(m_chirp, qmatch, label = 'GR')	
 
 	# Plotting the point with maximum match  where the curves intersect
 #	max_y = np.argmax(y_int)
@@ -133,23 +133,23 @@ for ii in val:
 #		ax.annotate('%.2f, %.2f'%(0.5 - x_int, y_int), xy=(0.5 - x_int, y_int), xytext= (0.45 - x_int, y_int + 0.02), fontsize = 15) 
 
 	index = np.where(pmatch == pmatch.max())
-	x_max = S1[int(index[0])]
+	x_max = m_chirp[int(index[0])]
 	y_max = pmatch[int(index[0])]
 	
         ax.annotate('%.2f, %.2f'%(x_max, y_max), xy=(x_max, y_max), xytext=(x_max + 0.05, y_int + 0.02), fontsize = 15)
 
 	# Formatting
-	ax.set_xlabel('$S_{1x}$', fontsize = 20)
+	ax.set_xlabel('$\mathcal{M}$', fontsize = 20)
 	ax.set_ylabel('Match', fontsize = 20)
 #	ax.set_title(('Match plot for varying $M_1$'), fontsize = 20)
 	ax.xaxis.set_tick_params(labelsize=15)
 	ax.yaxis.set_tick_params(labelsize=15)
-	ax.axvline(x_max, linestyle = '--', color = 'k')
-#	ax.axvline(0.5 - x_max, linestyle = '--', color = 'k')
-	ax.axhline(y_max, linestyle = '--', color = 'k')
+#	ax.axvline(x_max, linestyle = '--', color = 'k')
+#	ax.axvline(-x_max, linestyle = '--', color = 'k')
+#	ax.axhline(y_max, linestyle = '--', color = 'k')
 #	ax.set_xlim(5, 35)
 	plt.legend(loc = 'best')
 	plt.grid()
-	plt.savefig('/home/c1320229/non-GR/intercept_dalpha3_' + '%s'%ii + 'spin.png')
-	plt.show()
+	plt.savefig('/home/c1320229/non-GR/intercept_dchi0_' + '%s'%ii + '.png')
+#	plt.show()
 #	plt.close()

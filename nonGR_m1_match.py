@@ -92,9 +92,9 @@ p['f_lower'] = 20
 p['approximant'] = 'IMRPhenomPv2'
 
 #nGR = ['dchi0','dchi1','dchi2','dchi3','dchi4','dchi6',
-nGR = ['dalpha2','dalpha3','dalpha4','dbeta2','dbeta3'] # hashed out to test one param
+#nGR = ['dalpha2','dalpha3','dalpha4','dbeta2','dbeta3'] # hashed out to test one param
 
-#nGR = ['dbeta3']
+nGR = ['dchi0']
 
 ngrparam = np.linspace(-0.5, 0.5, 100) # range of nGR params
 #mass1 = np.linspace(15, 45, 100) # Range of masses
@@ -150,8 +150,8 @@ for nonGR in nGR:
 	plt.grid()
 	plt.savefig('/home/c1320229/non-GR/dbeta3_match_distribution.png')	
 	plt.show()
-	'''	
-
+			
+	'''
 	fig1 = plt.figure('%s'%nonGR, figsize = (20.0, 13.5))
 	ax1 = fig1.add_subplot(1,1,1)
 	cont = ax1.contourf(ngrparam, spin1, M, 100)
@@ -162,19 +162,21 @@ for nonGR in nGR:
 	colorbar_ax = fig1.add_axes([0.905, 0.11, 0.05, 0.77])
 	cbar = fig1.colorbar(cont, cax = colorbar_ax, format = '%.3f')
 	cbar.ax.tick_params(labelsize = 17)
+	
 	con = ax1.contour(ngrparam, spin1, M, 1 ,levels=levels)
 	'''
 	ax1.axvline(max_2Dx(con), linewidth = 2, linestyle = '--', color = 'k')
         ax1.axvline(min_2Dx(con), linewidth = 2, linestyle = '--', color = 'k')
         ax1.axhline(max_2Dy(con), linewidth = 2, linestyle = '--', color = 'k')
         ax1.axhline(min_2Dy(con), linewidth = 2, linestyle = '--', color = 'k')
-	'''
+	
+	
 	ax1.xaxis.set_tick_params(labelsize=20)
 	ax1.yaxis.set_tick_params(labelsize=20)
 	ax1.clabel(con, color = 'k')
 	plt.savefig('/home/c1320229/non-GR/%s'%nonGR + 'spin1.png')
 #	plt.show()
-	'''
+	
 	fig2 = plt.figure('%s'%nonGR + 'm_chirp', figsize = (20.0, 13.5))
         ax2 = fig2.add_subplot(1,1,1)
         cont = ax2.contourf(ngrparam, m_chirp, M, 100)
@@ -189,5 +191,9 @@ for nonGR in nGR:
         ax2.clabel(con, color = 'k')
         plt.savefig('/home/c1320229/non-GR/%s'%nonGR + 'extended_m_chirp.png')
 #	plt.show()	
-	'''	
+	'''
+	loc = np.where(con==con.max())
+	print loc
+
+		
 	p['%s'%nonGR] = 0.0

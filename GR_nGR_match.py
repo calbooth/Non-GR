@@ -136,7 +136,7 @@ for ii in val:
 	x_max = m_chirp[int(index[0])]
 	y_max = pmatch[int(index[0])]
 	
-        ax.annotate('%.2f, %.2f'%(x_max, y_max), xy=(x_max, y_max), xytext=(x_max + 0.05, y_int + 0.02), fontsize = 15)
+#        ax.annotate('%.2f, %.2f'%(x_max, y_max), xy=(x_max, y_max), xytext=(x_max + 0.05, y_int + 0.02), fontsize = 15)
 
 	# Formatting
 	ax.set_xlabel('$\mathcal{M}$', fontsize = 20)

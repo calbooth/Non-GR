@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
-import matplotlib
+#import matplotlib
 
-matplotlib.use('Agg')
+#matplotlib.use('Agg')
 
 import numpy as np
 import pycbc
@@ -92,11 +92,11 @@ p['f_lower'] = 20
 p['approximant'] = 'IMRPhenomPv2'
 
 #nGR = ['dchi0','dchi1','dchi2','dchi3','dchi4','dchi6',
-#nGR = ['dalpha2','dalpha3','dalpha4','dbeta2','dbeta3'] # hashed out to test one param
+nGR = ['dalpha2','dalpha3','dalpha4']#,'dbeta2','dbeta3'] # hashed out to test one param
 
-nGR = ['dchi0']
+#nGR = ['dchi0']
 
-ngrparam = np.linspace(-0.5, 0.5, 100) # range of nGR params
+ngrparam = np.linspace(-4.0, 4.0, 100) # range of nGR params
 #mass1 = np.linspace(15, 45, 100) # Range of masses
 
 spin1 = np.linspace(-0.5, 0.5, 100)
@@ -158,7 +158,7 @@ for nonGR in nGR:
 	#ax1.set_ylabel('$S_{1x}$', fontsize = 20)
 	#ax1.set_xlabel('%s'%nonGR, fontsize = 20)
 	#ax.set_title('Match plot of varying %s and $M_1$'%nonGR, fontsize = 20)
-	ax1.annotate('$\otimes$', (nongr_0, spin_0), fontsize = 22)
+	ax1.annotate('$\otimes$', (nongr_0, spin_0), fontsize = 25)
 	colorbar_ax = fig1.add_axes([0.905, 0.11, 0.05, 0.77])
 	cbar = fig1.colorbar(cont, cax = colorbar_ax, format = '%.3f')
 	cbar.ax.tick_params(labelsize = 17)
@@ -169,14 +169,15 @@ for nonGR in nGR:
         ax1.axvline(min_2Dx(con), linewidth = 2, linestyle = '--', color = 'k')
         ax1.axhline(max_2Dy(con), linewidth = 2, linestyle = '--', color = 'k')
         ax1.axhline(min_2Dy(con), linewidth = 2, linestyle = '--', color = 'k')
-	
+	'''
 	
 	ax1.xaxis.set_tick_params(labelsize=20)
 	ax1.yaxis.set_tick_params(labelsize=20)
 	ax1.clabel(con, color = 'k')
-	plt.savefig('/home/c1320229/non-GR/%s'%nonGR + 'spin1.png')
-#	plt.show()
+	plt.savefig('/home/c1320229/non-GR/%s'%nonGR + 'PRECESSING.png')
+	plt.show()
 	
+	'''
 	fig2 = plt.figure('%s'%nonGR + 'm_chirp', figsize = (20.0, 13.5))
         ax2 = fig2.add_subplot(1,1,1)
         cont = ax2.contourf(ngrparam, m_chirp, M, 100)
@@ -192,8 +193,5 @@ for nonGR in nGR:
         plt.savefig('/home/c1320229/non-GR/%s'%nonGR + 'extended_m_chirp.png')
 #	plt.show()	
 	'''
-	loc = np.where(con==con.max())
-	print loc
-
 		
 	p['%s'%nonGR] = 0.0

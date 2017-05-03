@@ -67,9 +67,9 @@ M1 = np.linspace(5, 35, 1000) # The mass array
 pmatch = np.zeros(1000) # Non-GR match array
 qmatch = np.zeros(1000) # GR match array
 
-val = np.linspace(-0.5, 0.5, 20)
+#val = np.linspace(-0.5, 0.5, 20)
 
-#val = np.array([-0.2])
+val = np.array([-0.131])
 
 for ii in val:
 	
@@ -110,6 +110,11 @@ for ii in val:
 	x_int = m_chirp[idx]
 	y_int = pmatch[idx]
 
+	a = np.where(pmatch == pmatch.max())
+	b = m_chirp[a]
+
+	print max(pmatch), b
+	'''
 		
 	fig = plt.figure(figsize  = (10.0, 6.25))
 	ax = fig.add_subplot(1,1,1)
@@ -153,3 +158,4 @@ for ii in val:
 	plt.savefig('/home/c1320229/non-GR/intercept_dchi0_' + '%s'%ii + '.png')
 #	plt.show()
 #	plt.close()
+	'''

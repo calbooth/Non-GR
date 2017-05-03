@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 
-#import matplotlib
-
-#matplotlib.use('Agg')
+import matplotlib
+matplotlib.use('Agg')
 
 import numpy as np
 import pycbc
@@ -91,12 +90,13 @@ p['delta_t'] = 1./4096
 p['f_lower'] = 20
 p['approximant'] = 'IMRPhenomPv2'
 
-#nGR = ['dchi0','dchi1','dchi2','dchi3','dchi4','dchi6',
-nGR = ['dalpha2','dalpha3','dalpha4']#,'dbeta2','dbeta3'] # hashed out to test one param
+#nGR = ['dchi0','dchi1','dchi2','dchi3','dchi4','dchi6']
+#nGR = ['dalpha2','dalpha3','dalpha4']#,
+nGR = ['dbeta2','dbeta3'] # hashed out to test one param
 
 #nGR = ['dchi0']
 
-ngrparam = np.linspace(-4.0, 4.0, 100) # range of nGR params
+ngrparam = np.linspace(-0.5, 0.5, 100) # range of nGR params
 #mass1 = np.linspace(15, 45, 100) # Range of masses
 
 spin1 = np.linspace(-0.5, 0.5, 100)
@@ -175,7 +175,7 @@ for nonGR in nGR:
 	ax1.yaxis.set_tick_params(labelsize=20)
 	ax1.clabel(con, color = 'k')
 	plt.savefig('/home/c1320229/non-GR/%s'%nonGR + 'PRECESSING.png')
-	plt.show()
+#	plt.show()
 	
 	'''
 	fig2 = plt.figure('%s'%nonGR + 'm_chirp', figsize = (20.0, 13.5))

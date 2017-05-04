@@ -90,16 +90,16 @@ p['delta_t'] = 1./4096
 p['f_lower'] = 20
 p['approximant'] = 'IMRPhenomPv2'
 
-#nGR = ['dchi0','dchi1','dchi2','dchi3','dchi4','dchi6']
+#nGR = ['dchi0','dchi1','dchi2','dchi3','dchi4','dchi6','dbeta2','dbeta3'] # hashed out to test one param
 nGR = ['dalpha2','dalpha3','dalpha4']
 #nGR = ['dbeta2','dbeta3'] # hashed out to test one param
 
 #nGR = ['dchi0']
 
-ngrparam = np.linspace(-0.5, 0.5, 100) # range of nGR params
-#mass1 = np.linspace(15, 45, 100) # Range of masses
+ngrparam = np.linspace(-4, 4, 100) # range of nGR params
+mass1 = np.linspace(15, 45, 100) # Range of masses
 
-spin1 = np.linspace(-0.5, 0.5, 100)
+#spin1 = np.linspace(-0.5, 0.5, 100)
 
 # First looping through params
 for nonGR in nGR:
@@ -112,16 +112,16 @@ for nonGR in nGR:
                 p['%s'%nonGR] = i
 		l = 0 # Initialising y coord to zero
 		
-	#	m_chirp = np.zeros(len(mass1))	
+		m_chirp = np.zeros(len(mass1))	
 	
 		# Looping through masses
-		for j in spin1:
-			p['spin1x'] = j			
+		for j in mass1:
+			p['mass1'] = j			
 			
 			# Creating non-GR waveform
         		sp, sc = pycbc.waveform.waveform.get_td_waveform(**p)
 			
-		#	m_chirp[l] = ((j*30.0)**(3.0/5.0))/((j + 30.0)**(1.0/5.0))		
+			m_chirp[l] = ((j*30.0)**(3.0/5.0))/((j + 30.0)**(1.0/5.0))		
 	
      	  		# Resize the waveforms to the same length
               		sp.resize(tlen)
@@ -154,16 +154,16 @@ for nonGR in nGR:
 	'''
 	fig1 = plt.figure('%s'%nonGR, figsize = (20.0, 13.5))
 	ax1 = fig1.add_subplot(1,1,1)
-	cont = ax1.contourf(ngrparam, spin1, M, 100)
+	cont = ax1.contourf(ngrparam, m_chirp, M, 100)
 	#ax1.set_ylabel('$S_{1x}$', fontsize = 20)
 	#ax1.set_xlabel('%s'%nonGR, fontsize = 20)
 	#ax.set_title('Match plot of varying %s and $M_1$'%nonGR, fontsize = 20)
-	ax1.annotate('$\otimes$', (nongr_0, spin_0), fontsize = 25)
+	ax1.annotate('$\otimes$', (nongr_0, mass_0), fontsize = 25)
 	colorbar_ax = fig1.add_axes([0.905, 0.11, 0.05, 0.77])
 	cbar = fig1.colorbar(cont, cax = colorbar_ax, format = '%.3f')
 	cbar.ax.tick_params(labelsize = 17)
 	
-	con = ax1.contour(ngrparam, spin1, M, 1 ,levels=levels)
+	con = ax1.contour(ngrparam, m_chirp, M, 1 ,levels=levels)
 	'''
 	ax1.axvline(max_2Dx(con), linewidth = 2, linestyle = '--', color = 'k')
         ax1.axvline(min_2Dx(con), linewidth = 2, linestyle = '--', color = 'k')
@@ -174,7 +174,7 @@ for nonGR in nGR:
 	ax1.xaxis.set_tick_params(labelsize=20)
 	ax1.yaxis.set_tick_params(labelsize=20)
 	ax1.clabel(con, color = 'k')
-	plt.savefig('/home/c1320229/non-GR/%s'%nonGR + 'PRECESSING.png')
+	plt.savefig('/home/c1320229/non-GR/%s'%nonGR + 'MCHIRP.png')
 #	plt.show()
 	
 	'''

@@ -91,8 +91,8 @@ p['f_lower'] = 20
 p['approximant'] = 'IMRPhenomPv2'
 
 #nGR = ['dchi0','dchi1','dchi2','dchi3','dchi4','dchi6']
-#nGR = ['dalpha2','dalpha3','dalpha4']#,
-nGR = ['dbeta2','dbeta3'] # hashed out to test one param
+nGR = ['dalpha2','dalpha3','dalpha4']
+#nGR = ['dbeta2','dbeta3'] # hashed out to test one param
 
 #nGR = ['dchi0']
 

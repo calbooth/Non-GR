@@ -90,13 +90,13 @@ p['delta_t'] = 1./4096
 p['f_lower'] = 20
 p['approximant'] = 'IMRPhenomPv2'
 
-#nGR = ['dchi0','dchi1','dchi2','dchi3','dchi4','dchi6','dbeta2','dbeta3'] # hashed out to test one param
-nGR = ['dalpha2','dalpha3','dalpha4']
+nGR = ['dchi0','dchi1','dchi2','dchi3','dchi4','dchi6','dbeta2','dbeta3'] # hashed out to test one param
+#nGR = ['dalpha2','dalpha3','dalpha4']
 #nGR = ['dbeta2','dbeta3'] # hashed out to test one param
 
 #nGR = ['dchi0']
 
-ngrparam = np.linspace(-4, 4, 100) # range of nGR params
+ngrparam = np.linspace(-0.5, 0.5, 100) # range of nGR params
 mass1 = np.linspace(15, 45, 100) # Range of masses
 
 #spin1 = np.linspace(-0.5, 0.5, 100)
@@ -155,8 +155,8 @@ for nonGR in nGR:
 	fig1 = plt.figure('%s'%nonGR, figsize = (20.0, 13.5))
 	ax1 = fig1.add_subplot(1,1,1)
 	cont = ax1.contourf(ngrparam, m_chirp, M, 100)
-	#ax1.set_ylabel('$S_{1x}$', fontsize = 20)
-	#ax1.set_xlabel('%s'%nonGR, fontsize = 20)
+	ax1.set_ylabel('$\mathcal{M}$', fontsize = 20)
+	ax1.set_xlabel('%s'%nonGR, fontsize = 20)
 	#ax.set_title('Match plot of varying %s and $M_1$'%nonGR, fontsize = 20)
 	ax1.annotate('$\otimes$', (nongr_0, mass_0), fontsize = 25)
 	colorbar_ax = fig1.add_axes([0.905, 0.11, 0.05, 0.77])

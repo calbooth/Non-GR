@@ -96,7 +96,7 @@ for nonGR in nGR:
 
 	
 	# Plotting and saving the waveforms
-	'''
+	
 	plt.figure('%s'%nonGR, figsize = (10.0, 6.25))
 	plt.plot(hp.sample_times, hp, label = 'GR IMRPhenomPv2')
 	plt.plot(sp.sample_times, sp, label = 'Non-GR IMRPhenomPv2')
@@ -111,4 +111,4 @@ for nonGR in nGR:
 	plt.draw()
 	plt.savefig('/home/c1320229/non-GR/%s'%nonGR+'zero_spin.png', bbox = 'tight')
 	#plt.show()
-	'''
+	
